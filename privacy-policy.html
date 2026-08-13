@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>120ages - Privacy Policy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'CrakeTest';
+            src: url('assets/font/craketest-medium.otf') format('opentype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'CrakeTest';
+            src: url('assets/font/craketest-semibold.otf') format('opentype');
+            font-weight: 600;
+        }
+        :root {
+            --primary-bg: #254126;
+            --secondary-bg: #989D7D;
+            --light-bg: #F0F0EF;
+            --white: #FFFFFF;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: var(--primary-bg);
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'CrakeTest', serif !important;
+        }
+    
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+    </style>
+</head>
+<body class="bg-[#FFFFFF] antialiased min-h-screen flex flex-col pt-20">
+
+    <!-- New Fixed Navbar -->
+    <div id="navbar"
+        class="fixed top-6 py-3 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between bg-[var(--primary-bg)] pl-1 py-0.5 rounded-full border border-[var(--light-bg)]/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] w-[90%] max-w-[650px]">
+
+        <a href="index.html"
+            class="hover:text-[var(--light-bg)] transition-colors z-10 flex items-center gap-2 text-[var(--light-bg)] font-bold text-md tracking-tight pl-2 whitespace-nowrap">
+            <span class="ml-1">120ages®</span>
+        </a>
+
+        <!-- Full Menu -->
+        <div id="nav-full-menu" class="flex items-center ml-2 transition-all duration-300 opacity-100">
+            <!-- Desktop Links -->
+            <div
+                class="hidden md:flex items-center gap-6 text-[var(--light-bg)]/90 text-sm font-medium pr-4 whitespace-nowrap border-r border-[var(--light-bg)]/20 mr-4">
+                <a href="index.html" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                <a href="collections.html" class="text-white hover:text-gray-300 transition-colors">Collections</a>
+                
+                <a href="connect.html" class="text-white hover:text-gray-300 transition-colors">Contact</a>
+            </div>
+
+            <!-- E-commerce Icons -->
+            <div class="hidden md:flex items-center gap-5 text-[var(--light-bg)] pr-3">
+                <button class="hover:text-[#f8c630] transition-colors">
+                    <i class="fa-solid fa-bell text-lg"></i>
+                </button>
+                <button class="hover:text-[#f8c630] transition-colors" onclick="openCart()">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                </button>
+                <button class="hover:text-[#f8c630] transition-colors">
+                    <i class="fa-solid fa-user text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Icon -->
+            <div class="md:hidden flex items-center justify-center p-2 pr-3 cursor-pointer" onclick="openMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f8c630" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Compact Menu (3 dots) -->
+        <div id="nav-compact-menu"
+            class="hidden absolute right-1 items-center justify-center pr-2 h-[40px] cursor-pointer group opacity-0 transition-opacity duration-300"
+            onclick="expandNavbar()">
+            <div class="flex items-end gap-1.5 h-[16px]">
+                <div class="w-1.5 rounded-full bg-[var(--light-bg)] animate-bounce-custom" style="animation-delay: 0s">
+                </div>
+                <div class="w-1.5 rounded-full bg-[var(--light-bg)] animate-bounce-custom"
+                    style="animation-delay: 0.5s"></div>
+                <div class="w-1.5 rounded-full bg-[var(--light-bg)] animate-bounce-custom"
+                    style="animation-delay: 1.0s"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[110] bg-[var(--primary-bg)] flex flex-col items-center justify-center gap-8 translate-y-[-100%] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] pointer-events-none">
+        <!-- Close Button -->
+        <div class="absolute top-8 right-8 text-[var(--light-bg)]/50 hover:text-[var(--light-bg)] cursor-pointer transition-colors p-4"
+            onclick="closeMobileMenu()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-col items-center gap-8 text-4xl font-bold tracking-tighter mt-16">
+            <a href="index.html" onclick="closeMobileMenu()"
+                class="text-[var(--light-bg)] hover:text-[#f8c630] transition-colors">Home</a>
+            <a href="collections.html" onclick="closeMobileMenu()"
+                class="text-[var(--light-bg)] hover:text-[#f8c630] transition-colors">Collections</a>
+            
+            <a href="connect.html" onclick="closeMobileMenu()"
+                class="text-[#f8c630] hover:text-[var(--light-bg)] transition-colors mt-8">Contact</a>
+        </div>
+    </div>
+
+    <main class="w-full max-w-4xl mx-auto px-8 py-20 flex-grow">
+        <h1 class="font-heading text-6xl text-[var(--primary-bg)] mb-4 text-center">Privacy Policy</h1>
+        <p class="text-center text-gray-400 mb-12">Last Updated: October 15, 2024</p>
+        
+        <div class="space-y-12 text-gray-600 leading-relaxed text-lg">
+            <section>
+                <h2 class="text-3xl font-heading text-[var(--primary-bg)] mb-6">1. Information We Collect</h2>
+                <p>At 120ages, we collect several different types of information for various purposes to provide and improve our service to you. This includes Personal Data such as your email address, first name and last name, phone number, and address when you create an account or make a purchase.</p>
+            </section>
+            
+            <section>
+                <h2 class="text-3xl font-heading text-[var(--primary-bg)] mb-6">2. Use of Data</h2>
+                <p class="mb-4">120ages uses the collected data for various purposes:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>To provide and maintain our Service</li>
+                    <li>To notify you about changes to our Service</li>
+                    <li>To provide customer support</li>
+                    <li>To gather analysis or valuable information so that we can improve our Service</li>
+                    <li>To detect, prevent and address technical issues</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-heading text-[var(--primary-bg)] mb-6">3. Security of Data</h2>
+                <p class="mb-4">The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-heading text-[var(--primary-bg)] mb-6">4. Cookies</h2>
+                <p>We use cookies and similar tracking technologies to track the activity on our Service and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
+            </section>
+        </div>
+    </main>
+
+        <footer class="w-full relative bg-[var(--light-bg)] pt-20 pb-12 overflow-hidden rounded-t-[3rem] h-[100vh]">
+        <!-- Background Image from assets -->
+        <div class="absolute bottom-0 left-0 w-full h-full z-0 pointer-events-none opacity-90">
+            <!-- Using an image that fades at the top -->
+            <img src="assets/footerbg.png" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" alt="Footer background">
+            <div class="absolute inset-0 bg-gradient-to-t from-transparent via-[#f7f6f2]/10 to-[#f7f6f2]"></div>
+        </div>
+
+        <div class="w-full max-w-[1400px] mx-auto px-8 md:px-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-8 lg:gap-16">
+
+                <!-- Column 1: Brand & Newsletter -->
+                <div class="col-span-1 md:col-span-1 flex flex-col mb-12 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[var(--primary-bg)] tracking-tight mb-6">
+                        120ages
+                    </h2>
+
+                    <div class="mb-16">
+                        <input type="email" placeholder="type your email"
+                            class="w-full max-w-[250px] bg-[var(--secondary-bg)]/60 text-[var(--primary-bg)] placeholder-neutral-600 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-1 focus:ring-neutral-400 transition-all border-none">
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-4">
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                    </div>
+
+                    <p class="text-[10px] text-[var(--secondary-bg)] font-medium">© 2026 Brun Atelier. Rooted in
+                        craft,
+                        refined
+                        through time.</p>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="col-span-1 flex flex-col mb-8 md:mb-0">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Home</a></li>
+                        <li><a href="collections.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Collections</a></li>
+                        
+                        <li><a href="connect.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Legal -->
+                <div class="col-span-1 flex flex-col mb-8 md:mb-0">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Legal</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="shipping-returns.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Shipping & Returns</a></li>
+                        <li><a href="faq.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">FAQs</a></li>
+                        <li><a href="privacy-policy.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Material Focus -->
+                <div class="col-span-1 flex flex-col">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Material Focus
+                    </h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Solid
+                                Oak</a></li>
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Natural
+                                Walnut</a></li>
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Hand-Finished
+                                Surfaces</a></li>
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Sustainable
+                                Timber</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Spacing to allow background to show at bottom if needed -->
+            <div class="h-32 md:h-48"></div>
+        </div>
+    </footer>
+
+<!-- Navbar Scripts -->
+    <script>
+        let isScrolled = false;
+        let lastScrollY = window.scrollY;
+        const navbar = document.getElementById('navbar');
+        const fullMenu = document.getElementById('nav-full-menu');
+        const compactMenu = document.getElementById('nav-compact-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function updateNavbarState(scrolled) {
+            isScrolled = scrolled;
+            if (isScrolled) {
+                navbar.style.width = '250px';
+                navbar.style.maxWidth = '250px';
+
+                fullMenu.style.opacity = '0';
+                fullMenu.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    fullMenu.classList.add('hidden');
+                    compactMenu.classList.remove('hidden');
+                    compactMenu.style.display = 'flex';
+                    // small delay to allow display:flex to apply before opacity transition
+                    setTimeout(() => {
+                        compactMenu.style.opacity = '1';
+                    }, 50);
+                }, 300);
+            } else {
+                navbar.style.width = '90%';
+                navbar.style.maxWidth = '650px';
+
+                compactMenu.style.opacity = '0';
+                setTimeout(() => {
+                    compactMenu.classList.add('hidden');
+                    compactMenu.style.display = 'none';
+                    fullMenu.classList.remove('hidden');
+                    // small delay to allow display:block to apply before opacity transition
+                    setTimeout(() => {
+                        fullMenu.style.opacity = '1';
+                        fullMenu.style.pointerEvents = 'auto';
+                    }, 50);
+                }, 300);
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY;
+
+            if (currentScrollY > 100 && delta > 10) {
+                if (!isScrolled) updateNavbarState(true);
+            } else if (delta < -10 || currentScrollY < 50) {
+                if (isScrolled) updateNavbarState(false);
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+
+        function expandNavbar() {
+            updateNavbarState(false);
+        }
+
+        function openMobileMenu() {
+            mobileMenu.style.pointerEvents = 'auto';
+            mobileMenu.style.opacity = '1';
+            mobileMenu.style.transform = 'translateY(0)';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.style.opacity = '0';
+            mobileMenu.style.transform = 'translateY(-100%)';
+            mobileMenu.style.pointerEvents = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // About Us Scroll Reveal
+        const revealTextContainer = document.querySelector('.reveal-text-container');
+        if (revealTextContainer) {
+            const words = revealTextContainer.querySelectorAll('span');
+            window.addEventListener('scroll', () => {
+                const rect = revealTextContainer.getBoundingClientRect();
+                // Trigger area: start revealing when top of container hits 80% of viewport, finish by 30%
+                const start = window.innerHeight * 0.8;
+                const end = window.innerHeight * 0.3;
+
+                let progress = (start - rect.top) / (start - end);
+                progress = Math.max(0, Math.min(1, progress));
+
+                const wordsToReveal = Math.floor(progress * words.length);
+
+                words.forEach((word, index) => {
+                    if (index < wordsToReveal) {
+                        word.classList.remove('opacity-20');
+                        word.classList.add('opacity-100');
+                    } else {
+                        word.classList.add('opacity-20');
+                        word.classList.remove('opacity-100');
+                    }
+                });
+            }, { passive: true });
+            // Mission Parallax Effect
+            const parallaxBg = document.querySelector('.parallax-bg');
+            if (parallaxBg) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    // Subtle parallax on scroll
+                    parallaxBg.style.transform = `translateY(${scrolled * 0.1}px)`;
+                }, { passive: true });
+            }
+            // Preloader Logic
+            window.addEventListener('load', () => {
+                const preloader = document.getElementById('preloader');
+                const rows = document.querySelectorAll('.preloader-row');
+
+                // Lock scrolling
+                document.body.style.overflow = 'hidden';
+
+                // Start the animation shortly after load
+                // Wait 2 seconds before slicing out
+                setTimeout(() => {
+                    const preText = document.getElementById('preloader-text');
+                    if (preText) preText.style.opacity = '0';
+
+                    setTimeout(() => {
+                        rows.forEach(row => {
+                            row.style.transform = 'scaleY(0)';
+                        });
+
+                        // Allow scrolling and hide container after animation finishes
+                        setTimeout(() => {
+                            document.body.style.overflow = 'auto';
+                            preloader.style.display = 'none';
+                        }, 1500);
+                    }, 300);
+                }, 2000);
+            });
+
+
+
+            // Trigger once on load in case it's already in view
+            window.dispatchEvent(new Event('scroll'));
+        }
+    </script>
+
+<!-- Cart Drawer -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/40 z-[120] opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeCart()"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-[100vh] w-full max-w-[450px] bg-[var(--light-bg)] z-[130] translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-l-[2.5rem] flex flex-col shadow-2xl border-l border-[var(--primary-bg)]/10 overflow-hidden">
+        
+        <!-- Cart Header -->
+        <div class="px-6 pt-10 pb-4">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="font-heading text-5xl text-[var(--primary-bg)] font-bold tracking-tight uppercase" style="color: var(--primary-bg);">Cart <span class="text-xl align-top font-sans font-semibold tracking-normal" style="color: var(--primary-bg);"><span id="cart-header-count">(0)</span></span></h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-[var(--primary-bg)] transition-colors">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <a href="#" class="text-sm font-bold text-[var(--primary-bg)] underline decoration-2 decoration-[var(--primary-bg)] hover:opacity-70 transition-opacity underline-offset-4 tracking-wide">Empty Basket</a>
+        </div>
+
+        <!-- Milestones (Horizontal Scroll) -->
+        <div class="flex items-center gap-3 px-6 pb-8 pt-2 overflow-x-auto no-scrollbar scroll-smooth snap-x">
+            <!-- Milestone 1 -->
+            <div id="milestone-1" class="min-w-[150px] bg-[#f8c630] rounded-2xl p-4 snap-start shrink-0">
+                <p class="text-[9px] font-bold text-[var(--primary-bg)] uppercase mb-1 tracking-wider">Get Free Shipping</p>
+                <p class="text-[15px] font-bold text-[var(--primary-bg)]">$200.00</p>
+            </div>
+            <!-- Milestone 2 -->
+            <div id="milestone-2" class="min-w-[150px] border border-[#f8c630] rounded-2xl p-4 snap-start shrink-0 relative overflow-hidden bg-white/50">
+                <div class="absolute top-0 left-0 h-full w-[65%] bg-[#f8c630] -z-10"></div>
+                <p class="text-[9px] font-bold text-[var(--primary-bg)] uppercase mb-1 tracking-wider">Save Extra 5% Off</p>
+                <p class="text-[15px] font-bold text-[var(--primary-bg)]">$150.00</p>
+            </div>
+            </div>
+
+        <!-- Cart Items (Scrollable) -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto px-6 pb-8 no-scrollbar flex flex-col gap-6">
+        </div>
+
+        <!-- Summary & Checkout -->
+        <div class="mt-auto bg-transparent px-6 py-8">
+            <div class="flex justify-between items-center mb-2.5">
+                <span class="text-[15px] font-medium text-[var(--primary-bg)]">Free shipping</span>
+                <span class="text-[15px] font-medium text-[var(--primary-bg)]">0 PLN</span>
+            </div>
+            
+            
+            <div class="h-px w-full bg-gray-200 mb-5"></div>
+            
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-xl font-bold text-[var(--primary-bg)] uppercase tracking-wide">Subtotal</span>
+                <span id="cart-subtotal" class="text-xl font-bold text-[var(--primary-bg)]">$0.00</span>
+            </div>
+
+            <button class="w-full py-4 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full font-heading font-bold text-2xl hover:opacity-90 transition-colors">
+                Go to checkout
+            </button>
+        </div>
+
+    </div>
+
+<script>
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-drawer-overlay');
+        function openCart() {
+            if(cartOverlay && cartDrawer) {
+                cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                cartOverlay.classList.add('opacity-100', 'pointer-events-auto');
+                cartDrawer.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeCart() {
+            if(cartOverlay && cartDrawer) {
+                cartOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+                cartDrawer.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+<script src="cart.js"></script>
+</body>
+</html>

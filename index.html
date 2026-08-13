@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumóra - Hero Section Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+        @keyframes text-fill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @font-face {
+            font-family: 'CrakeTest';
+            src: url('assets/font/craketest-medium.otf') format('opentype');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'CrakeTest';
+            src: url('assets/font/craketest-medium.otf') format('opentype');
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: 'CrakeTest';
+            src: url('assets/font/craketest-semibold.otf') format('opentype');
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: 'CrakeTest';
+            src: url('assets/font/craketest-semibold.otf') format('opentype');
+            font-weight: bold;
+        }
+
+        :root {
+            --primary-bg: #254126;
+            --secondary-bg: #989D7D;
+            --light-bg: #F0F0EF;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'CrakeTest', serif !important;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+
+        .animate-marquee-slow {
+            animation: marquee 40s linear infinite;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Custom Bounce Animation for Navbar Dots */
+        @keyframes bounce-custom {
+
+            0%,
+            100% {
+                height: 5px;
+                background-color: #ffffff;
+            }
+
+            50% {
+                height: 15px;
+                background-color: #f8c630;
+            }
+        }
+
+        .animate-bounce-custom {
+            animation: bounce-custom 1.5s ease-in-out infinite;
+        }
+    
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+    </style>
+</head>
+
+<body class="bg-[var(--light-bg)] antialiased ">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[9999] w-full h-[100vh]">
+        <!-- Slicing Background -->
+        <div class="absolute inset-0 grid grid-rows-5 w-full h-full">
+            <div class="preloader-row w-full h-full bg-[#254126] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)]"
+                style="transform: scaleY(1);"></div>
+            <div class="preloader-row w-full h-full bg-[#254126] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[100ms]"
+                style="transform: scaleY(1);"></div>
+            <div class="preloader-row w-full h-full bg-[#254126] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[200ms]"
+                style="transform: scaleY(1);"></div>
+            <div class="preloader-row w-full h-full bg-[#254126] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[300ms]"
+                style="transform: scaleY(1);"></div>
+            <div class="preloader-row w-full h-full bg-[#254126] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[400ms]"
+                style="transform: scaleY(1);"></div>
+        </div>
+
+        <div id="preloader-text"
+            class="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000 ease-in-out z-10">
+            <h1 class="text-[8rem] font-semibold relative inline-block text-[var(--light-bg)]/20" style="color: rgba(240, 240, 239, 0.2);">
+                120ages
+                <span class="absolute top-0 left-0 text-[#f8c630] overflow-hidden whitespace-nowrap" style="animation: text-fill 2.5s cubic-bezier(0.7, 0, 1, 1) forwards;">
+                    120ages
+                </span>
+            </h1>
+        </div>
+    </div>
+    <div class="preloader-row w-full h-full bg-[var(--primary-bg)] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[100ms]"
+        style="transform: scaleY(1);"></div>
+    <div class="preloader-row w-full h-full bg-[var(--primary-bg)] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[200ms]"
+        style="transform: scaleY(1);"></div>
+    <div class="preloader-row w-full h-full bg-[var(--primary-bg)] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[300ms]"
+        style="transform: scaleY(1);"></div>
+    <div class="preloader-row w-full h-full bg-[var(--primary-bg)] origin-top transition-transform duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)] delay-[400ms]"
+        style="transform: scaleY(1);"></div>
+    </div>
+
+
+    <!-- New Fixed Navbar -->
+    <div id="navbar"
+        class="fixed top-6 py-3 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between bg-[var(--primary-bg)] pl-1 py-0.5 rounded-full border border-[var(--light-bg)]/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] w-[90%] max-w-[650px]">
+
+        <a href="index.html"
+            class="hover:text-[var(--light-bg)] transition-colors z-10 flex items-center gap-2 text-[var(--light-bg)] font-bold text-md tracking-tight pl-2 whitespace-nowrap">
+            <span class="ml-1">120ages®</span>
+        </a>
+
+        <!-- Full Menu -->
+        <div id="nav-full-menu" class="flex items-center ml-2 transition-all duration-300 opacity-100">
+            <!-- Desktop Links -->
+            <div
+                class="hidden md:flex items-center gap-6 text-[var(--light-bg)]/90 text-sm font-medium pr-4 whitespace-nowrap border-r border-[var(--light-bg)]/20 mr-4">
+                <a href="index.html" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                <a href="collections.html" class="text-white hover:text-gray-300 transition-colors">Collections</a>
+                
+                <a href="connect.html" class="text-white hover:text-gray-300 transition-colors">Contact</a>
+            </div>
+
+            <!-- E-commerce Icons -->
+            <div class="hidden md:flex items-center gap-5 text-[var(--light-bg)] pr-3">
+                <button class="hover:text-[#f8c630] transition-colors">
+                    <i class="fa-solid fa-bell text-lg"></i>
+                </button>
+                <button class="hover:text-[#f8c630] transition-colors" onclick="openCart()">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                </button>
+                <button class="hover:text-[#f8c630] transition-colors">
+                    <i class="fa-solid fa-user text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Icon -->
+            <div class="md:hidden flex items-center justify-center p-2 pr-3 cursor-pointer" onclick="openMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f8c630" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Compact Menu (3 dots) -->
+        <div id="nav-compact-menu"
+            class="hidden absolute right-1 items-center justify-center pr-2 h-[40px] cursor-pointer group opacity-0 transition-opacity duration-300"
+            onclick="expandNavbar()">
+            <div class="flex items-end gap-1.5 h-[16px]">
+                <div class="w-1.5 rounded-full bg-[var(--light-bg)] animate-bounce-custom" style="animation-delay: 0s">
+                </div>
+                <div class="w-1.5 rounded-full bg-[var(--light-bg)] animate-bounce-custom"
+                    style="animation-delay: 0.5s"></div>
+                <div class="w-1.5 rounded-full bg-[var(--light-bg)] animate-bounce-custom"
+                    style="animation-delay: 1.0s"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[110] bg-[var(--primary-bg)] flex flex-col items-center justify-center gap-8 translate-y-[-100%] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] pointer-events-none">
+        <!-- Close Button -->
+        <div class="absolute top-8 right-8 text-[var(--light-bg)]/50 hover:text-[var(--light-bg)] cursor-pointer transition-colors p-4"
+            onclick="closeMobileMenu()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-col items-center gap-8 text-4xl font-bold tracking-tighter mt-16">
+            <a href="index.html" onclick="closeMobileMenu()"
+                class="text-[var(--light-bg)] hover:text-[#f8c630] transition-colors">Home</a>
+            <a href="collections.html" onclick="closeMobileMenu()"
+                class="text-[var(--light-bg)] hover:text-[#f8c630] transition-colors">Collections</a>
+            
+            <a href="connect.html" onclick="closeMobileMenu()"
+                class="text-[#f8c630] hover:text-[var(--light-bg)] transition-colors mt-8">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section Container -->
+    <div
+        class="relative w-full h-[100vh] pt-24 bg-[var(--light-bg)] rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
+
+        <!-- Old Navigation Removed, replaced by Fixed Navbar at top -->
+
+        <!-- Main Content Area -->
+        <div class="flex-grow flex flex-col relative z-10 px-8 md:px-12 pb-10 pt-4">
+
+            <!-- Top Section -->
+            <div class="flex flex-col xl:flex-row justify-between items-start xl:items-start w-full">
+                <!-- Big Heading -->
+                <h1
+                    class="text-[5rem] md:text-[12rem] lg:text-[11rem] xl:text-[13rem] font-medium leading-[0.8] tracking-[-0.03em] text-[var(--primary-bg)] -ml-2">
+                    120ages<sup
+                        class="text-3xl md:text-6xl xl:text-7xl font-normal relative -top-[2.5rem] md:-top-[4.5rem] xl:-top-[6rem] -ml-2 xl:-ml-4">®</sup>
+                </h1>
+
+                <!-- Right Info Box -->
+                <div class="mt-12 xl:mt-6 max-w-[320px] xl:ml-auto">
+                    <!-- Avatars and Badge -->
+                    <div class="flex items-center mb-6">
+
+                        <!-- <div class="w-8 border-t border-neutral-900 mx-3"></div> -->
+                        <div class="flex -space-x-3">
+                            <img src="https://i.pravatar.cc/100?img=11" alt="User 1"
+                                class="w-10 h-10 rounded-full border-2 border-[#f4f4f4] relative z-10 grayscale" />
+                            <img src="https://i.pravatar.cc/100?img=47" alt="User 2"
+                                class="w-10 h-10 rounded-full border-2 border-[#f4f4f4] relative z-10 grayscale" />
+                            <img src="https://i.pravatar.cc/100?img=12" alt="User 3"
+                                class="w-10 h-10 rounded-full border-2 border-[#f4f4f4] relative z-20 grayscale" />
+                        </div>
+                        <span class="text-[11px] font-bold  ml-4 text-[var(--primary-bg)]">[ BUILT TO
+                            ENDURE]</span>
+                    </div>
+
+                    <!-- Paragraph -->
+                    <p class="text-[var(--secondary-bg)] text-[15px] leading-relaxed">
+                        Fuel your body with the purest ancient grains. Premium organic superfoods, responsibly sourced
+                        to elevate your everyday wellness.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex-grow"></div>
+
+            <!-- Bottom Section -->
+            <div class="flex flex-col lg:flex-row justify-between items-end mt-48 lg:mt-auto relative z-20 w-full">
+
+                <!-- Left: Trusted Brands -->
+                <div class="text-[var(--light-bg)]/90 mb-8 lg:mb-2 max-w-[420px]">
+                    <p class="text-[13px] font-medium leading-relaxed mb-6 opacity-90">
+                        Trusted by families and chefs turning organic<br>harvests into nourishing everyday meals.
+                    </p>
+
+                    <div class="flex flex-wrap gap-x-8 gap-y-4 items-center text-[13px] font-semibold opacity-70">
+                        <div class="flex items-center space-x-2 hover:opacity-100 transition cursor-pointer">
+                            <i class="fa-solid fa-cloud"></i> <span>CloudWatch</span>
+                        </div>
+                        <div class="flex items-center space-x-2 hover:opacity-100 transition cursor-pointer">
+                            <i class="fa-solid fa-bolt"></i> <span>Boltshift</span>
+                        </div>
+                        <div class="flex items-center space-x-2 hover:opacity-100 transition cursor-pointer">
+                            <i class="fa-solid fa-link"></i> <span>Interlock</span>
+                        </div>
+                        <div class="flex items-center space-x-2 hover:opacity-100 transition cursor-pointer">
+                            <i class="fa-brands fa-envira"></i> <span>Epicurious</span>
+                        </div>
+                        <div class="flex items-center space-x-2 hover:opacity-100 transition cursor-pointer">
+                            <i class="fa-solid fa-shapes"></i> <span>Sisyphus</span>
+                        </div>
+                        <div class="flex items-center space-x-2 hover:opacity-100 transition cursor-pointer">
+                            <i class="fa-solid fa-asterisk"></i> <span>Nietzsche</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Highlight Card -->
+                <div class="bg-[var(--light-bg)]/90 backdrop-blur-md rounded-3xl p-2 w-[300px] shadow-2xl">
+                    <div
+                        class="bg-[#f0f0f0] rounded-[1.25rem] h-[170px] mb-3 overflow-hidden relative group cursor-pointer">
+                        <!-- Placeholder for the small device image -->
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60"
+                            alt="120ages Farms Project"
+                            class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="px-3 pb-2 pt-1 flex justify-between items-end">
+                        <div>
+                            <h3 class="font-bold text-[var(--primary-bg)] text-base">120ages Farms<sup
+                                    class="text-[10px] font-medium ml-0.5">®</sup></h3>
+                            <p class="text-[11px] font-medium text-[var(--secondary-bg)] mt-1">Organic Harvest - 2026*
+                            </p>
+                        </div>
+                        <button
+                            class="w-8 h-8 bg-neutral-100 rounded-full flex items-center justify-center hover:bg-[var(--secondary-bg)] transition text-[var(--secondary-bg)]">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Background Image Layer -->
+        <!-- Positioning it behind the content but inside the container -->
+        <div class="absolute inset-0 z-0 pointer-events-none flex flex-col justify-end">
+            <!-- Top fade out if needed, but we'll let the image naturally blend or cover -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#f4f4f4] via-transparent to-transparent z-10 h-[40%]">
+            </div>
+
+            <!-- Landscape Image -->
+            <img src="assets/herobg.png" alt="Landscape Background" class="w-full h-[85%] object-cover object-bottom" />
+
+            <!-- Bottom subtle dark gradient for text readability (white text on left) -->
+            <div
+                class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 via-black/10 to-transparent z-10">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Products Section -->
+    <section class="w-full max-w-[1400px] mx-auto pt-8">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <h2 class="text-4xl md:text-[2.75rem] text-[var(--primary-bg)] tracking-tight">
+                Premium Organic Grains
+            </h2>
+            <div class="flex items-center space-x-4">
+                <button
+                    class="px-5 py-2 bg-[var(--secondary-bg)] text-[var(--primary-bg)] text-sm font-semibold rounded-full hover:bg-neutral-300 transition">Best
+                    Sellers</button>
+                <button
+                    class="text-[var(--secondary-bg)] text-sm font-semibold hover:text-[var(--primary-bg)] transition">New
+                    Arrivals</button>
+            </div>
+        </div>
+
+        <!-- Scrollable Cards -->
+        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4">
+
+            <!-- Card 1 -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <span
+                    class="absolute top-6 left-6 bg-red-600 text-[var(--light-bg)] text-[11px] font-bold px-3 py-1 rounded-full z-10">Sale</span>
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_skin_glow_1786535968800.png" alt="Heirloom Quinoa Blend"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Organic Grain</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2">Heirloom Quinoa Blend</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$200.00</span>
+                            <span class="text-[13px] text-[var(--secondary-bg)] line-through">$232.00</span>
+                        </div>
+                        <button onclick="addToCart('User 1', '$200.00', 'https://i.pravatar.cc/100?img=11')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_microbiome_1786535998547.png" alt="Daily Multivitamin - Microbiome"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Superfood</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2">Daily Multivitamin</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$50.00</span>
+                        </div>
+                        <button onclick="addToCart('Daily Multivitamin - Microbiome', '$50.00', 'assets/wellina_microbiome_1786535998547.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <span
+                    class="absolute top-6 left-6 bg-[#7c9e78] text-[var(--light-bg)] text-[11px] font-bold px-3 py-1 rounded-full z-10">Best
+                    Sellers</span>
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_elixir_1786536032623.png" alt="Daily Multivitamin - Elixir"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Superfood</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2">Daily Multivitamin</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$50.00</span>
+                        </div>
+                        <button onclick="addToCart('Daily Multivitamin - Elixir', '$50.00', 'assets/wellina_elixir_1786536032623.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_hydrator_1786536160699.png" alt="Daily Multivitamin - Hydrator"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Superfood</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2">Daily Multivitamin</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$50.00</span>
+                        </div>
+                        <button onclick="addToCart('Daily Multivitamin - Hydrator', '$50.00', 'assets/wellina_hydrator_1786536160699.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Scroll Controls -->
+        <div class="flex justify-between items-center mt-2 border-t border-neutral-200 pt-8 relative">
+            <!-- Progress Bar -->
+            <div class="w-48 h-[1px] bg-[var(--secondary-bg)] absolute top-0 left-0">
+                <div class="w-1/3 h-[2px] bg-[var(--primary-bg)] absolute top-0 left-0 -mt-[0.5px]"></div>
+            </div>
+
+            <div class="flex-grow"></div>
+
+            <!-- Arrows -->
+            <div class="flex items-center space-x-3">
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Reveal Section -->
+    <section
+        class="w-full max-w-[1400px] mx-auto px-4 md:px-8 relative overflow-hidden flex flex-col justify-center items-center  pb-4">
+
+        <!-- Floating Left Image -->
+        <div
+            class="absolute left-[-5%] md:left-[2%] top-[30%] md:top-[20%] w-[200px] h-[200px] rotate-[-12deg] z-0 drop-shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=80" alt="Smiling Person"
+                class="w-full h-full rounded-[2rem] object-cover border-[6px] border-[var(--light-bg)]">
+        </div>
+
+        <!-- Floating Right Image -->
+        <div
+            class="absolute right-[-5%] md:right-[2%] top-[50%] md:top-[30%] w-[200px] h-[200px] rotate-[8deg] z-0 drop-shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" alt="Smiling Person"
+                class="w-full h-full rounded-[2rem] object-cover border-[6px] border-[var(--light-bg)]">
+        </div>
+
+        <div class="w-full max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 px-4 md:px-12">
+
+            <!-- Top Pill -->
+            <div
+                class="px-6 py-2 rounded-full border border-neutral-200 text-[11px] font-bold text-[var(--primary-bg)] tracking-widest uppercase mb-12 shadow-sm bg-[var(--light-bg)]/50 backdrop-blur-sm">
+                About Us
+            </div>
+
+            <!-- Scroll Reveal Text -->
+            <div
+                class="reveal-text-container font-heading text-[1.75rem] md:text-4xl lg:text-[3rem]  font-medium mb-16 tracking-tight max-w-[900px] mx-auto flex flex-wrap justify-center gap-x-[0.25em] gap-y-1 md:gap-y-3">
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">The</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">guiding</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">principles</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">behind</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">every</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">smile</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">we</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">create</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">are</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">rooted</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">in</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">care,</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">precision,</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">trust,</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">and</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">a</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">commitment</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">to</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">delivering</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">confidence</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">through</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">every</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">experience</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">we</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">design.</span>
+            </div>
+
+            <!-- Bottom Button -->
+            <button
+                class="bg-[var(--secondary-bg)] hover:bg-[#c2e240] text-[var(--primary-bg)] pl-2 pr-6 py-2 rounded-full font-bold text-sm transition-all duration-300 flex items-center gap-4 shadow-lg group relative z-20">
+                <div
+                    class="w-8 h-8 rounded-full bg-[var(--primary-bg)] text-[var(--light-bg)] flex items-center justify-center transition-transform group-hover:translate-x-1">
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </div>
+                Learn More About Us
+            </button>
+
+        </div>
+    </section>
+
+
+    <!-- Millets & Pseudo-Grains Section -->
+    <section class="w-full max-w-[1400px] mx-auto pt-16">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <h2 class="text-4xl md:text-[2.75rem] text-[var(--primary-bg)] tracking-tight">
+                Millets & Pseudo-Grains
+            </h2>
+            <div class="flex items-center space-x-4">
+                <button
+                    class="px-5 py-2 bg-[var(--secondary-bg)] text-[var(--primary-bg)] text-sm font-semibold rounded-full hover:bg-neutral-300 transition">View
+                    All</button>
+            </div>
+        </div>
+
+        <!-- Scrollable Cards -->
+        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4">
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/media__1786535692003.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Barnyard Millet">
+                        Barnyard
+                        Millet</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Smiling Person', '$15.00', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=80')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/productdemo.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Browntop Millet">
+                        Browntop
+                        Millet</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/productdemo.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/prouduct1.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Finger Millet">
+                        Finger Millet
+                    </h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/prouduct1.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_elixir_1786536032623.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Foxtail Millet">
+                        Foxtail
+                        Millet</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/wellina_elixir_1786536032623.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_hydrator_1786536160699.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Kodo Millet">Kodo
+                        Millet
+                    </h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/wellina_hydrator_1786536160699.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_microbiome_1786535998547.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Little Millet">
+                        Little Millet
+                    </h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/wellina_microbiome_1786535998547.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/wellina_skin_glow_1786535968800.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Pearl Millet">
+                        Pearl
+                        Millet
+                    </h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/wellina_skin_glow_1786535968800.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/media__1786535692003.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Millet</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate"
+                        title="Quinoa (Pseudo-grain commonly grouped with millets)">Quinoa (Pseudo-grain commonly
+                        grouped with millets)</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/media__1786535692003.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Controls -->
+        <div class="flex justify-between items-center mt-2 border-t border-neutral-200 pt-8 relative">
+            <div class="w-48 h-[1px] bg-[var(--secondary-bg)] absolute top-0 left-0">
+                <div class="w-1/3 h-[2px] bg-[var(--primary-bg)] absolute top-0 left-0 -mt-[0.5px]"></div>
+            </div>
+            <div class="flex-grow"></div>
+            <div class="flex items-center space-x-3">
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialty & Traditional Rice Section -->
+    <section class="w-full max-w-[1400px] mx-auto pt-16">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <h2 class="text-4xl md:text-[2.75rem] text-[var(--primary-bg)] tracking-tight">
+                Specialty & Traditional Rice
+            </h2>
+            <div class="flex items-center space-x-4">
+                <button
+                    class="px-5 py-2 bg-[var(--secondary-bg)] text-[var(--primary-bg)] text-sm font-semibold rounded-full hover:bg-neutral-300 transition">View
+                    All</button>
+            </div>
+        </div>
+
+        <!-- Scrollable Cards -->
+        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4">
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/productdemo.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Rice</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Black Rice">Black
+                        Rice</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/productdemo.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div
+                class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                <div
+                    class="h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                    <img src="assets/prouduct1.png" alt="Product image"
+                        class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+                </div>
+                <div class="mt-auto px-6 py-6">
+                    <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">Rice</p>
+                    <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="Navara Rice">
+                        Navara
+                        Rice
+                    </h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">$15.00</span>
+                        </div>
+                        <button onclick="addToCart('Product image', '$15.00', 'assets/prouduct1.png')"
+                            class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Controls -->
+        <div class="flex justify-between items-center mt-2 border-t border-neutral-200 pt-8 relative">
+            <div class="w-48 h-[1px] bg-[var(--secondary-bg)] absolute top-0 left-0">
+                <div class="w-1/3 h-[2px] bg-[var(--primary-bg)] absolute top-0 left-0 -mt-[0.5px]"></div>
+            </div>
+            <div class="flex-grow"></div>
+            <div class="flex items-center space-x-3">
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landscape Poster Marquee Section -->
+    <section class="w-full h-[50vh] relative overflow-hidden bg-[var(--light-bg)] mb-12 flex items-center">
+        <!-- Scroll Track Container -->
+        <div class="flex items-center h-[90%] gap-2 animate-marquee-slow w-max">
+
+            <!-- Set 1 -->
+            <div class="flex items-center gap-6 h-full shrink-0">
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/prouductshowcase.png" class="w-full h-full object-cover mix-blend-multiply"
+                        alt="Poster 1">
+                </div>
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/herobg.png" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 2">
+                </div>
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/media__1786535692003.png" class="w-full h-full object-cover mix-blend-multiply"
+                        alt="Poster 3">
+                </div>
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/image.png" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 4"
+                        onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80'">
+                </div>
+            </div>
+
+            <!-- Set 2 (Duplicate for infinite scroll loop) -->
+            <div class="flex items-center gap-6 h-full shrink-0">
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/prouductshowcase.png" class="w-full h-full object-cover mix-blend-multiply"
+                        alt="Poster 1">
+                </div>
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/herobg.png" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 2">
+                </div>
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/media__1786535692003.png" class="w-full h-full object-cover mix-blend-multiply"
+                        alt="Poster 3">
+                </div>
+                <div
+                    class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    <img src="assets/image.png" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 4"
+                        onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80'">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Mission Video Section -->
+    <div class="px-2">
+        <section
+            class="w-full h-[100vh] rounded-[2rem] relative overflow-hidden flex items-center justify-center bg-[var(--light-bg)] mb-12 ">
+
+            <!-- Parallax Background Video -->
+            <div class=" absolute inset-0 w-full h-full z-0 transition-transform duration-[800ms] ease-out">
+                <video src="assets/videos/productvideo.mp4" autoplay loop muted playsinline
+                    class="w-full h-full object-cover opacity-90 mix-blend-multiply"></video>
+            </div>
+
+            <!-- Top Navigation / Text -->
+            <div
+                class="absolute top-0 left-0 w-full p-8 md:p-12 flex flex-col md:flex-row justify-between items-start z-10 max-w-[1600px] mx-auto right-0">
+                <!-- Left -->
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-4xl md:text-6xl text-[var(--primary-bg)]">Mission</h2>
+                </div>
+
+                <!-- Right -->
+                <div class="w-full md:w-1/3">
+                    <p class="text-[var(--primary-bg)] text-[14px] md:text-[15px] font-medium leading-relaxed max-w-sm">
+                        At <span class="italic text-[var(--primary-bg)]">Elixiral</span>, we are on a mission to bring
+                        life back to every strand, just like rain after a long dry season. Crafted for those who believe
+                        that real beauty starts at the root.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bottom Left Button -->
+            <div class="absolute bottom-8 md:bottom-12 left-8 md:left-12 z-10 reveal-bottom">
+                <button
+                    class="bg-[var(--primary-bg)] text-[var(--light-bg)] pl-8 pr-2 py-2 rounded-full font-bold text-[16px] transition-all duration-300 flex items-center gap-6 shadow-xl hover:-translate-y-1 hover:shadow-2xl group">
+                    Get it now
+                    <div
+                        class="w-10 h-10 rounded-full bg-[var(--light-bg)] text-[var(--primary-bg)] flex items-center justify-center transition-transform group-hover:rotate-45">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17l9.2-9.2M17 17V7H7" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- Testimonials Section -->
+    <section class="w-full mx-auto px-4 md:px-8 bg-[var(--light-bg)] mt-16">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 px-4 md:px-8">
+            <h2
+                class="text-4xl md:text-[3.25rem] font-medium text-[var(--primary-bg)] tracking-tight leading-[1.1] max-w-xl">
+                Cultivated to deliver<br>proven natural vitality <span class="text-pink-300">♡</span>
+            </h2>
+            <p class="text-[var(--secondary-bg)] text-[15px] font-medium max-w-xs md:text-right md:pb-2">
+                Explore results shaped by real users and real daily progress.
+            </p>
+        </div>
+
+        <!-- Scrollable Cards -->
+        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4 px-4 md:px-8">
+
+            <!-- Card 1 (Text) -->
+            <div
+                class="min-w-[300px] max-w-[300px] h-[400px] bg-[var(--light-bg)] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:-translate-y-2 transition-transform duration-500 cursor-pointer">
+                <div class="flex items-center gap-4 mb-8">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Avatar"
+                        class="w-12 h-12 rounded-full object-cover">
+                    <div>
+                        <h4 class="font-bold text-[var(--primary-bg)] text-[15px]">Amina R.</h4>
+                        <p class="text-[var(--secondary-bg)] text-[12px]">Nuvē user for 3 months</p>
+                    </div>
+                </div>
+                <p class="text-[16px] text-[var(--primary-bg)] leading-snug font-medium mb-auto tracking-tight">
+                    "Every scan feels personal — it's like the app actually learns how my skin changes through the
+                    week."
+                </p>
+                <div class="flex justify-between items-end mt-6">
+                    <div class="flex gap-1 text-pink-300 text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-[11px] text-[var(--secondary-bg)] font-medium tracking-wide">15/12/2025</span>
+                </div>
+            </div>
+
+            <!-- Card 2 (Image) -->
+            <div
+                class="min-w-[300px] max-w-[300px] h-[400px] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden hover:-translate-y-2 transition-transform duration-500 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80"
+                    class="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-0 transition-opacity group-hover:opacity-80">
+                </div>
+
+                <div class="relative z-10 mt-2">
+                    <h4 class="font-bold text-[var(--light-bg)] text-[15px]">Noah</h4>
+                    <p class="text-[var(--light-bg)]/90 text-[12px]">Using Nuvē since 2024</p>
+                </div>
+
+                <div class="flex justify-between items-end mt-auto relative z-10 pb-2">
+                    <div class="flex gap-1 text-[var(--light-bg)] text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-[11px] text-[var(--light-bg)]/90 font-medium tracking-wide">16/12/2025</span>
+                </div>
+            </div>
+
+            <!-- Card 3 (Text) -->
+            <div
+                class="min-w-[300px] max-w-[300px] h-[400px] bg-[var(--light-bg)] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:-translate-y-2 transition-transform duration-500 cursor-pointer">
+                <div class="flex items-center gap-4 mb-8">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80" alt="Avatar"
+                        class="w-12 h-12 rounded-full object-cover">
+                    <div>
+                        <h4 class="font-bold text-[var(--primary-bg)] text-[15px]">Sofia G.</h4>
+                        <p class="text-[var(--secondary-bg)] text-[12px]">Nuvē user, combo skin</p>
+                    </div>
+                </div>
+                <p class="text-[16px] text-[var(--primary-bg)] leading-snug font-medium mb-auto tracking-tight">
+                    "The hydration insights are spot-on. I used to guess what my skin needed, but now I know exactly
+                    when to rest, hydrate, or simplify my routine."
+                </p>
+                <div class="flex justify-between items-end mt-6">
+                    <div class="flex gap-1 text-pink-300 text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-[11px] text-[var(--secondary-bg)] font-medium tracking-wide">17/12/2025</span>
+                </div>
+            </div>
+
+            <!-- Card 4 (Image) -->
+            <div
+                class="min-w-[300px] max-w-[300px] h-[400px] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden hover:-translate-y-2 transition-transform duration-500 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80"
+                    class="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-0 transition-opacity group-hover:opacity-80">
+                </div>
+
+                <div class="relative z-10 mt-2">
+                    <h4 class="font-bold text-[var(--light-bg)] text-[15px]">Nastya</h4>
+                    <p class="text-[var(--light-bg)]/90 text-[12px]">From Berlin, Germany</p>
+                </div>
+
+                <div class="flex justify-between items-end mt-auto relative z-10 pb-2">
+                    <div class="flex gap-1 text-[var(--light-bg)] text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-[11px] text-[var(--light-bg)]/90 font-medium tracking-wide">18/12/2025</span>
+                </div>
+
+            </div>
+
+            <!-- Card 5 (Video) -->
+            <div
+                class="min-w-[300px] max-w-[300px] h-[400px] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden hover:-translate-y-2 transition-transform duration-500 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1505322022379-7c3353ee6291?w=400&q=80"
+                    class="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700">
+                <div
+                    class="absolute inset-0 bg-[var(--primary-bg)]/30 z-0 group-hover:bg-[var(--primary-bg)]/40 transition-colors">
+                </div>
+
+                <!-- Play Button Center -->
+                <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                    <div
+                        class="w-16 h-16 rounded-full bg-[var(--light-bg)]/30 backdrop-blur-md flex items-center justify-center text-[var(--light-bg)] border border-[var(--light-bg)]/40 group-hover:bg-[var(--light-bg)]/40 group-hover:scale-110 transition-all duration-300 shadow-xl">
+                        <i class="fa-solid fa-play ml-1 text-xl"></i>
+                    </div>
+                </div>
+
+                <div class="relative z-10 mt-2">
+                    <h4 class="font-bold text-[var(--light-bg)] text-[15px]">Sarah M.</h4>
+                    <p class="text-[var(--light-bg)]/90 text-[12px]">Video Testimonial</p>
+                </div>
+
+                <div class="flex justify-between items-end mt-auto relative z-10 pb-2">
+                    <div class="flex gap-1 text-[var(--light-bg)] text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-[11px] text-[var(--light-bg)]/90 font-medium tracking-wide">19/12/2025</span>
+                </div>
+
+                <!-- Right Arrow Overlay -->
+                <div
+                    class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--light-bg)]/20 backdrop-blur-sm border border-[var(--light-bg)]/30 flex items-center justify-center text-[var(--light-bg)] group-hover:bg-[var(--light-bg)]/40 transition z-20">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Fresh Approach Section -->
+    <section class="w-full max-w-[1400px] mx-auto px-8 md:px-12 py-12">
+        <!-- Top Row -->
+        <div class="flex flex-col md:flex-row justify-between items-start gap-12 md:gap-24 mb-28">
+            <!-- Left Header -->
+            <div class="w-full md:w-[45%]">
+                <div class="w-10 h-[2px] bg-[var(--primary-bg)] mb-8"></div>
+                <h2
+                    class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--primary-bg)] leading-[1.15]">
+                    our fresh approach to grooming.
+                </h2>
+            </div>
+            <!-- Right Description -->
+            <div class="w-full md:w-[50%] md:pt-10">
+                <p class="text-[var(--secondary-bg)] text-[15px] leading-relaxed max-w-lg">
+                    Our men's body wash can handle your dirty sides. made without parabens + phthalates, it's packed
+                    with plant-based cleansers that lather quickly and rinse clean.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Grid (Icons) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16">
+
+            <!-- Item 1 -->
+            <div class="flex flex-col gap-5 group cursor-default">
+                <div class="text-[var(--primary-bg)] transition-transform duration-500 group-hover:-translate-y-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                        <path d="M2 22 12 12" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-[var(--primary-bg)] text-sm md:text-[15px] tracking-tight">nature-inspired
+                    scents.
+                </h4>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex flex-col gap-5 group cursor-default">
+                <div class="text-[var(--primary-bg)] transition-transform duration-500 group-hover:-translate-y-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="7" y="10" width="10" height="12" rx="2" />
+                        <path d="M7 10h10v0c0-1.66-1.34-3-3-3h-4c-1.66 0-3 1.34-3 3v0z" />
+                        <path d="M9 7v-3h6v3" />
+                        <path d="M12 4v-2" />
+                        <path d="M10 2h4" />
+                        <path d="M4 14c-1.1 0-2-.9-2-2 0-1.1 1-2.5 2-4 1 1.5 2 2.9 2 4 0 1.1-.9 2-2 2z" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-[var(--primary-bg)] text-sm md:text-[15px] tracking-tight">no added
+                    parabens.
+                </h4>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex flex-col gap-5 group cursor-default">
+                <div class="text-[var(--primary-bg)] transition-transform duration-500 group-hover:-translate-y-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 16a3 3 0 0 1 2.24 5" />
+                        <path d="M18 12h.01" />
+                        <path
+                            d="M18 21h-8a4 4 0 0 1-4-4 7 7 0 0 1 7-7h.2L9.6 6.4a1 1 0 1 1 2.8-2.8L15.8 7h.2c3.3 0 6 2.7 6 6v1a2 2 0 0 1-2 2h-1a3 3 0 0 0-3 3" />
+                        <path d="M20 8.54V4a2 2 0 1 0-4 0v3" />
+                        <path d="M7.612 12.524a3 3 0 1 0-1.6 4.3" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-[var(--primary-bg)] text-sm md:text-[15px] tracking-tight">animal
+                    cruelty-free.</h4>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="flex flex-col gap-5 group cursor-default">
+                <div class="text-[var(--primary-bg)] transition-transform duration-500 group-hover:-translate-y-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 22c-2.2 0-4-1.8-4-4 0-2.2 2-5.1 4-8 2 2.9 4 5.8 4 8 0 2.2-1.8 4-4 4z" />
+                        <path d="M8 18c-1.6 0-3-1.4-3-3 0-1.7 1.5-3.8 3-6 1.5 2.2 3 4.3 3 6 0 1.6-1.4 3-3 3z" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-[var(--primary-bg)] text-sm md:text-[15px] tracking-tight">lather and
+                    rinse
+                    clean.
+                </h4>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Botanica Section -->
+    <section class="w-full  mx-auto px-4 md:px-8 pb-16">
+        <div class="w-full bg-[var(--white)] rounded-[2rem] overflow-hidden flex flex-col md:flex-row relative">
+
+            <!-- Left Content -->
+            <div class="w-full md:w-1/2 p-10 md:p-16 lg:p-20 flex flex-col justify-center">
+                <p class="text-[var(--primary-bg)] text-sm font-medium mb-12">Botanica</p>
+                <h2
+                    class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--primary-bg)] leading-[1.1] mb-6">
+                    Slow-grown.<br>Applied daily.
+                </h2>
+                <p class="text-lg md:text-xl text-[var(--primary-bg)] font-medium mb-10 max-w-sm leading-snug">
+                    Body care made from what takes years to form.
+                </p>
+                <div>
+                    <button
+                        class="bg-[var(--primary-bg)] text-[var(--light-bg)] px-6 py-2.5 rounded-xl font-semibold text-sm transition">
+                        See Collections
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Image Area -->
+            <div class="w-full md:w-1/2 relative min-h-[300px] md:min-h-[500px] flex items-center justify-center p-8 ">
+                <img src="assets/productdemo.png" alt="Botanica Demo"
+                    class="w-full h-full  object-contain   mix-blend-multiply relative z-10">
+
+                <!-- Floating Arrow Button -->
+                <button
+                    class="absolute bottom-6 right-6 w-12 h-12 bg-[var(--secondary-bg)] hover:bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center transition shadow-lg z-20">
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer class="w-full relative bg-[var(--light-bg)] pt-20 pb-12 overflow-hidden rounded-t-[3rem] h-[100vh]">
+        <!-- Background Image from assets -->
+        <div class="absolute bottom-0 left-0 w-full h-full z-0 pointer-events-none opacity-90">
+            <!-- Using an image that fades at the top -->
+            <img src="assets/footerbg.png" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" alt="Footer background">
+            <div class="absolute inset-0 bg-gradient-to-t from-transparent via-[#f7f6f2]/10 to-[#f7f6f2]"></div>
+        </div>
+
+        <div class="w-full max-w-[1400px] mx-auto px-8 md:px-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-8 lg:gap-16">
+
+                <!-- Column 1: Brand & Newsletter -->
+                <div class="col-span-1 md:col-span-1 flex flex-col mb-12 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[var(--primary-bg)] tracking-tight mb-6">
+                        120ages
+                    </h2>
+
+                    <div class="mb-16">
+                        <input type="email" placeholder="type your email"
+                            class="w-full max-w-[250px] bg-[var(--secondary-bg)]/60 text-[var(--primary-bg)] placeholder-neutral-600 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-1 focus:ring-neutral-400 transition-all border-none">
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-4">
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                    </div>
+
+                    <p class="text-[10px] text-[var(--secondary-bg)] font-medium">© 2026 Brun Atelier. Rooted in
+                        craft,
+                        refined
+                        through time.</p>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="col-span-1 flex flex-col mb-8 md:mb-0">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Home</a></li>
+                        <li><a href="collections.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Collections</a></li>
+                        
+                        <li><a href="connect.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Legal -->
+                <div class="col-span-1 flex flex-col mb-8 md:mb-0">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Legal</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="shipping-returns.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Shipping & Returns</a></li>
+                        <li><a href="faq.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">FAQs</a></li>
+                        <li><a href="privacy-policy.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html" class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Material Focus -->
+                <div class="col-span-1 flex flex-col">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Material Focus
+                    </h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Solid
+                                Oak</a></li>
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Natural
+                                Walnut</a></li>
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Hand-Finished
+                                Surfaces</a></li>
+                        <li><a href="#"
+                                class="text-[13px] font-medium text-[var(--secondary-bg)] hover:text-[var(--primary-bg)] transition-colors">Sustainable
+                                Timber</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Spacing to allow background to show at bottom if needed -->
+            <div class="h-32 md:h-48"></div>
+        </div>
+    </footer>
+
+    <!-- Navbar Scripts -->
+    <script>
+        let isScrolled = false;
+        let lastScrollY = window.scrollY;
+        const navbar = document.getElementById('navbar');
+        const fullMenu = document.getElementById('nav-full-menu');
+        const compactMenu = document.getElementById('nav-compact-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function updateNavbarState(scrolled) {
+            isScrolled = scrolled;
+            if (isScrolled) {
+                navbar.style.width = '250px';
+                navbar.style.maxWidth = '250px';
+
+                fullMenu.style.opacity = '0';
+                fullMenu.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    fullMenu.classList.add('hidden');
+                    compactMenu.classList.remove('hidden');
+                    compactMenu.style.display = 'flex';
+                    // small delay to allow display:flex to apply before opacity transition
+                    setTimeout(() => {
+                        compactMenu.style.opacity = '1';
+                    }, 50);
+                }, 300);
+            } else {
+                navbar.style.width = '90%';
+                navbar.style.maxWidth = '650px';
+
+                compactMenu.style.opacity = '0';
+                setTimeout(() => {
+                    compactMenu.classList.add('hidden');
+                    compactMenu.style.display = 'none';
+                    fullMenu.classList.remove('hidden');
+                    // small delay to allow display:block to apply before opacity transition
+                    setTimeout(() => {
+                        fullMenu.style.opacity = '1';
+                        fullMenu.style.pointerEvents = 'auto';
+                    }, 50);
+                }, 300);
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY;
+
+            if (currentScrollY > 100 && delta > 10) {
+                if (!isScrolled) updateNavbarState(true);
+            } else if (delta < -10 || currentScrollY < 50) {
+                if (isScrolled) updateNavbarState(false);
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+
+        function expandNavbar() {
+            updateNavbarState(false);
+        }
+
+        function openMobileMenu() {
+            mobileMenu.style.pointerEvents = 'auto';
+            mobileMenu.style.opacity = '1';
+            mobileMenu.style.transform = 'translateY(0)';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.style.opacity = '0';
+            mobileMenu.style.transform = 'translateY(-100%)';
+            mobileMenu.style.pointerEvents = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // About Us Scroll Reveal
+        const revealTextContainer = document.querySelector('.reveal-text-container');
+        if (revealTextContainer) {
+            const words = revealTextContainer.querySelectorAll('span');
+            window.addEventListener('scroll', () => {
+                const rect = revealTextContainer.getBoundingClientRect();
+                // Trigger area: start revealing when top of container hits 80% of viewport, finish by 30%
+                const start = window.innerHeight * 0.8;
+                const end = window.innerHeight * 0.3;
+
+                let progress = (start - rect.top) / (start - end);
+                progress = Math.max(0, Math.min(1, progress));
+
+                const wordsToReveal = Math.floor(progress * words.length);
+
+                words.forEach((word, index) => {
+                    if (index < wordsToReveal) {
+                        word.classList.remove('opacity-20');
+                        word.classList.add('opacity-100');
+                    } else {
+                        word.classList.add('opacity-20');
+                        word.classList.remove('opacity-100');
+                    }
+                });
+            }, { passive: true });
+            // Mission Parallax Effect
+            const parallaxBg = document.querySelector('.parallax-bg');
+            if (parallaxBg) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    // Subtle parallax on scroll
+                    parallaxBg.style.transform = `translateY(${scrolled * 0.1}px)`;
+                }, { passive: true });
+            }
+            // Preloader Logic
+            window.addEventListener('load', () => {
+                const preloader = document.getElementById('preloader');
+                const rows = document.querySelectorAll('.preloader-row');
+
+                // Lock scrolling
+                document.body.style.overflow = 'hidden';
+
+                // Start the animation shortly after load
+                // Wait 3 seconds before slicing out (2.5s animation + 0.5s gap)
+                setTimeout(() => {
+                    const preText = document.getElementById('preloader-text');
+                    if (preText) preText.style.opacity = '0';
+
+                    setTimeout(() => {
+                        rows.forEach(row => {
+                            row.style.transform = 'scaleY(0)';
+                        });
+
+                        // Allow scrolling and hide container after animation finishes
+                        setTimeout(() => {
+                            document.body.style.overflow = 'auto';
+                            preloader.style.display = 'none';
+                        }, 1500);
+                    }, 300);
+                }, 3000);
+            });
+
+
+
+            // Trigger once on load in case it's already in view
+            window.dispatchEvent(new Event('scroll'));
+        }
+    </script>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/40 z-[120] opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeCart()"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-[100vh] w-full max-w-[450px] bg-[var(--light-bg)] z-[130] translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-l-[2.5rem] flex flex-col shadow-2xl border-l border-[var(--primary-bg)]/10 overflow-hidden">
+        
+        <!-- Cart Header -->
+        <div class="px-6 pt-10 pb-4">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="font-heading text-5xl text-[var(--primary-bg)] font-bold tracking-tight uppercase" style="color: var(--primary-bg);">Cart <span class="text-xl align-top font-sans font-semibold tracking-normal" style="color: var(--primary-bg);"><span id="cart-header-count">(0)</span></span></h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-[var(--primary-bg)] transition-colors">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <a href="#" class="text-sm font-bold text-[var(--primary-bg)] underline decoration-2 decoration-[var(--primary-bg)] hover:opacity-70 transition-opacity underline-offset-4 tracking-wide">Empty Basket</a>
+        </div>
+
+        <!-- Milestones (Horizontal Scroll) -->
+        <div class="flex items-center gap-3 px-6 pb-8 pt-2 overflow-x-auto no-scrollbar scroll-smooth snap-x">
+            <!-- Milestone 1 -->
+            <div id="milestone-1" class="min-w-[150px] bg-[#f8c630] rounded-2xl p-4 snap-start shrink-0">
+                <p class="text-[9px] font-bold text-[var(--primary-bg)] uppercase mb-1 tracking-wider">Get Free Shipping</p>
+                <p class="text-[15px] font-bold text-[var(--primary-bg)]">$200.00</p>
+            </div>
+            <!-- Milestone 2 -->
+            <div id="milestone-2" class="min-w-[150px] border border-[#f8c630] rounded-2xl p-4 snap-start shrink-0 relative overflow-hidden bg-white/50">
+                <div class="absolute top-0 left-0 h-full w-[65%] bg-[#f8c630] -z-10"></div>
+                <p class="text-[9px] font-bold text-[var(--primary-bg)] uppercase mb-1 tracking-wider">Save Extra 5% Off</p>
+                <p class="text-[15px] font-bold text-[var(--primary-bg)]">$150.00</p>
+            </div>
+            </div>
+
+        <!-- Cart Items (Scrollable) -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto px-6 pb-8 no-scrollbar flex flex-col gap-6">
+        </div>
+
+        <!-- Summary & Checkout -->
+        <div class="mt-auto bg-transparent px-6 py-8">
+            <div class="flex justify-between items-center mb-2.5">
+                <span class="text-[15px] font-medium text-[var(--primary-bg)]">Free shipping</span>
+                <span class="text-[15px] font-medium text-[var(--primary-bg)]">0 PLN</span>
+            </div>
+            
+            
+            <div class="h-px w-full bg-gray-200 mb-5"></div>
+            
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-xl font-bold text-[var(--primary-bg)] uppercase tracking-wide">Subtotal</span>
+                <span id="cart-subtotal" class="text-xl font-bold text-[var(--primary-bg)]">$0.00</span>
+            </div>
+
+            <button class="w-full py-4 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full font-heading font-bold text-2xl hover:opacity-90 transition-colors">
+                Go to checkout
+            </button>
+        </div>
+
+    </div>
+
+
+    <script>
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-drawer-overlay');
+        function openCart() {
+            if(cartOverlay && cartDrawer) {
+                cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                cartOverlay.classList.add('opacity-100', 'pointer-events-auto');
+                cartDrawer.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeCart() {
+            if(cartOverlay && cartDrawer) {
+                cartOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+                cartDrawer.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+
+<script src="cart.js"></script>
+</body>
+
+</html>
