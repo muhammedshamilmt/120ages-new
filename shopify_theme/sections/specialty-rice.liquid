@@ -1,0 +1,116 @@
+    <!-- Specialty & Traditional Rice Section -->
+    <section class="w-full max-w-[1400px] mx-auto pt-16 px-4 md:px-8">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <h2 class="text-4xl md:text-[2.75rem] text-[var(--primary-bg)] tracking-tight">
+                {{ section.settings.title }}
+            </h2>
+            <div class="flex items-center space-x-4">
+                <a href="{{ routes.collections_url }}"
+                    class="px-5 py-2 bg-[var(--secondary-bg)] text-[var(--primary-bg)] text-sm font-semibold rounded-full hover:bg-neutral-300 transition">
+                    View All
+                </a>
+            </div>
+        </div>
+
+        <!-- Scrollable Cards -->
+        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4">
+            {% assign collection = collections[section.settings.collection] %}
+            {% if collection != blank %}
+                {% for product in collection.products limit: section.settings.product_count %}
+                <div class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+                    {% if product.compare_at_price > product.price %}
+                    <span class="absolute top-4 left-4 bg-red-600 text-white text-[11px] font-bold px-3 py-1 rounded-full z-10">Sale</span>
+                    {% endif %}
+                    <a href="{{ product.url }}" class="block h-[280px] w-full flex items-center justify-center overflow-hidden border-b border-[var(--primary-bg)]/80">
+                        {% if product.featured_image %}
+                        <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title | escape }}"
+                            class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply">
+                        {% else %}
+                        <div class="w-full h-full flex items-center justify-center bg-[var(--secondary-bg)]/10">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-[var(--secondary-bg)]"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                        </div>
+                        {% endif %}
+                    </a>
+                    <div class="mt-auto px-6 py-6">
+                        <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">{{ product.type | default: 'Rice' }}</p>
+                        <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="{{ product.title | escape }}">
+                            <a href="{{ product.url }}" class="hover:underline">{{ product.title }}</a>
+                        </h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">{{ product.price | money }}</span>
+                                {% if product.compare_at_price > product.price %}
+                                <span class="text-[13px] text-[var(--secondary-bg)] line-through">{{ product.compare_at_price | money }}</span>
+                                {% endif %}
+                            </div>
+                            <form method="post" action="/cart/add" class="m-0 p-0">
+                                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                                <button type="submit"
+                                    class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:opacity-80 transition shadow-lg">
+                                    <i class="fa-solid fa-cart-shopping text-sm"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="min-w-full py-16 flex flex-col items-center justify-center text-[var(--secondary-bg)] gap-3">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M8 7V5a2 2 0 0 0-4 0v2"/></svg>
+                    <p class="text-sm font-medium">Select a collection in the theme editor to display products here.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Scroll Controls -->
+        <div class="flex justify-between items-center mt-2 border-t border-neutral-200 pt-8 relative">
+            <div class="w-48 h-[1px] bg-[var(--secondary-bg)] absolute top-0 left-0">
+                <div class="w-1/3 h-[2px] bg-[var(--primary-bg)] absolute top-0 left-0 -mt-[0.5px]"></div>
+            </div>
+            <div class="flex-grow"></div>
+            <div class="flex items-center space-x-3">
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-[var(--secondary-bg)] hover:bg-[var(--light-bg)] transition hover:border-neutral-300">
+                    <i class="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+{% schema %}
+{
+  "name": "Specialty Rice",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Specialty & Traditional Rice"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_count",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Number of products to show",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Specialty Rice"
+    }
+  ]
+}
+{% endschema %}

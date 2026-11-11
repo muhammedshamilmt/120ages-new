@@ -1,0 +1,14 @@
+
+<section class="w-full pt-32 pb-20 px-8 max-w-[1000px] mx-auto min-h-[60vh]">
+  <h1 class="font-heading text-4xl md:text-5xl text-[var(--primary-bg)] mb-10">{{ page.title }}</h1>
+  <div class="prose max-w-none text-[var(--primary-bg)]/80 leading-relaxed">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": []
+}
+{% endschema %}

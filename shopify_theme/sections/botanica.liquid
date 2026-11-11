@@ -1,0 +1,111 @@
+    <!-- Botanica Section -->
+    <section class="w-full mx-auto px-4 md:px-8 pb-24">
+        <div class="w-full bg-[var(--white)] rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row relative shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
+
+            <!-- Left Content -->
+            <div class="w-full md:w-1/2 p-10 md:p-16 lg:p-20 flex flex-col justify-center">
+
+                <!-- Label -->
+                <div class="flex items-center gap-3 mb-12">
+                    <div class="w-6 h-[2px] bg-[var(--primary-bg)]"></div>
+                    <p class="text-[var(--primary-bg)] text-sm font-semibold tracking-widest uppercase">{{ section.settings.label }}</p>
+                </div>
+
+                <h2 class="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-[var(--primary-bg)] leading-[1.1] mb-6">
+                    {{ section.settings.heading }}
+                </h2>
+
+                <p class="text-lg text-[var(--secondary-bg)] font-medium mb-12 max-w-sm leading-snug">
+                    {{ section.settings.body }}
+                </p>
+
+                <!-- CTA -->
+                <div class="flex items-center gap-4">
+                    <a href="{{ section.settings.cta_link | default: routes.collections_url }}"
+                        class="bg-[var(--primary-bg)] text-[var(--light-bg)] pl-6 pr-2 py-2 rounded-full font-bold text-[15px] transition-all duration-300 flex items-center gap-4 shadow-lg hover:-translate-y-1 hover:shadow-xl group">
+                        {{ section.settings.cta_text }}
+                        <div class="w-9 h-9 rounded-full bg-[var(--light-bg)] text-[var(--primary-bg)] flex items-center justify-center transition-transform group-hover:rotate-45">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 17l9.2-9.2M17 17V7H7" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image Area -->
+            <div class="w-full md:w-1/2 relative min-h-[340px] md:min-h-[540px] flex items-center justify-center p-8 bg-[var(--light-bg)]/50">
+
+                <!-- Decorative blob -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-[70%] h-[70%] rounded-full bg-[var(--secondary-bg)]/10 blur-3xl"></div>
+                </div>
+
+                {% if section.settings.product_image != blank %}
+                <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ section.settings.heading | escape }}"
+                    class="w-full h-full object-contain mix-blend-multiply relative z-10 drop-shadow-xl transition-transform duration-700 hover:scale-105">
+                {% else %}
+                <img src="{{ 'productdemo.png' | asset_url }}" alt="Botanica product"
+                    class="w-full h-full object-contain mix-blend-multiply relative z-10 drop-shadow-xl transition-transform duration-700 hover:scale-105">
+                {% endif %}
+
+                <!-- Floating badge -->
+                <div class="absolute top-8 right-8 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-2xl px-4 py-3 text-center shadow-lg z-20">
+                    <p class="text-[10px] font-semibold tracking-widest uppercase opacity-70 mb-0.5">Est.</p>
+                    <p class="text-[18px] font-bold leading-none">120</p>
+                    <p class="text-[10px] font-semibold tracking-widest uppercase opacity-70 mt-0.5">Ages</p>
+                </div>
+
+                <!-- Floating arrow button -->
+                <a href="{{ section.settings.cta_link | default: routes.collections_url }}"
+                    class="absolute bottom-8 right-8 w-12 h-12 bg-[var(--secondary-bg)] hover:bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center transition-all duration-300 shadow-lg z-20 hover:-translate-y-1">
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+{% schema %}
+{
+  "name": "Botanica",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label (above heading)",
+      "default": "Botanica"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Slow-grown.\nApplied daily."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Body care made from what takes years to form."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "See Collections"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    }
+  ],
+  "presets": [{"name": "Botanica"}]
+}
+{% endschema %}

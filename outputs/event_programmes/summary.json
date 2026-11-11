@@ -1,0 +1,57 @@
+{
+  "files": [
+    {
+      "source": "Arts-Non-stage-Senior-Individual.csv",
+      "records": 39
+    },
+    {
+      "source": "Arts-Non-stage-Sub-junior-Individual.csv",
+      "records": 29
+    },
+    {
+      "source": "Arts-Stage-Junior-Group.csv",
+      "records": 2
+    },
+    {
+      "source": "Arts-Stage-Senior-Group.csv",
+      "records": 4
+    },
+    {
+      "source": "Arts-Stage-Senior-Individual.csv",
+      "records": 37
+    },
+    {
+      "source": "Arts-Stage-Sub-junior-Group.csv",
+      "records": 4
+    },
+    {
+      "source": "Arts-Stage-Sub-junior-Individual.csv",
+      "records": 28
+    },
+    {
+      "source": "Sports-General-Group.csv",
+      "records": 4
+    },
+    {
+      "source": "Sports-Junior-Group.csv",
+      "records": 6
+    },
+    {
+      "source": "Sports-Senior-Group.csv",
+      "records": 4
+    },
+    {
+      "source": "Sports-Senior-Individual.csv",
+      "records": 25
+    },
+    {
+      "source": "Sports-Sub-junior-Group.csv",
+      "records": 4
+    },
+    {
+      "source": "Sports-Sub-junior-Individual.csv",
+      "records": 25
+    }
+  ],
+  "totalRecords": 211
+}

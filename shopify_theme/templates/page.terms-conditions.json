@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "terms-conditions-page"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

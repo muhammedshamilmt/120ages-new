@@ -1,0 +1,78 @@
+
+<section class="w-full max-w-[1400px] mx-auto pt-8">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <h2 class="text-4xl md:text-[2.75rem] text-[var(--primary-bg)] tracking-tight">
+            {{ section.settings.title }}
+        </h2>
+        <div class="flex items-center space-x-4">
+            <button class="px-5 py-2 bg-[var(--secondary-bg)] text-[var(--primary-bg)] text-sm font-semibold rounded-full hover:bg-neutral-300 transition">Best Sellers</button>
+            <button class="text-[var(--secondary-bg)] text-sm font-semibold hover:text-[var(--primary-bg)] transition">New Arrivals</button>
+        </div>
+    </div>
+    
+    <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4">
+        {% for product in collections[section.settings.collection].products limit: section.settings.product_count %}
+        <div class="min-w-[320px] max-w-[320px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col snap-start relative group overflow-hidden border border-[var(--primary-bg)]/80">
+            {% if product.compare_at_price > product.price %}
+            <span class="absolute top-6 left-6 bg-red-600 text-[var(--light-bg)] text-[11px] font-bold px-3 py-1 rounded-full z-10">Sale</span>
+            {% endif %}
+            
+            <a href="{{ product.url }}" class="cursor-pointer h-full w-full flex items-center justify-center rounded-[2rem] overflow-hidden border-b border-[var(--primary-bg)]/80">
+                <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title | escape }}" class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply">
+            </a>
+            
+            <div class="mt-auto px-6 py-6">
+                <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">{{ product.type }}</p>
+                <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2"><a href="{{ product.url }}" class="hover:underline">{{ product.title }}</a></h3>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">{{ product.price | money }}</span>
+                        {% if product.compare_at_price > product.price %}
+                        <span class="text-[13px] text-[var(--secondary-bg)] line-through">{{ product.compare_at_price | money }}</span>
+                        {% endif %}
+                    </div>
+                    <form method="post" action="/cart/add" class="m-0 p-0">
+                        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                        <button type="submit" class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[var(--primary-bg)] transition shadow-lg">
+                            <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Premium Organic Grains"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_count",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Number of products to show",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

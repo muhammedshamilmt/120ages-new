@@ -1,0 +1,88 @@
+    <footer class="w-full relative bg-[var(--light-bg)] pt-20 pb-12 overflow-hidden rounded-t-[3rem] h-[100vh]">
+        <!-- Background Image from assets -->
+        <div class="absolute bottom-0 left-0 w-full h-full z-0 pointer-events-none opacity-90">
+            <!-- Using an image that fades at the top -->
+            <img src="{{ 'footerbg.png' | asset_url }}" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" alt="Footer background">
+            <div class="absolute inset-0 bg-gradient-to-t from-transparent via-[#f7f6f2]/10 to-[#f7f6f2]"></div>
+        </div>
+
+        <div class="w-full max-w-[1400px] mx-auto px-8 md:px-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-8 lg:gap-16">
+
+                <!-- Column 1: Brand & Newsletter -->
+                <div class="col-span-1 md:col-span-1 flex flex-col mb-12 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[var(--primary-bg)] tracking-tight mb-6">
+                        120ages
+                    </h2>
+
+                    <div class="mb-16">
+                        <input type="email" placeholder="type your email"
+                            class="w-full max-w-[250px] bg-[var(--secondary-bg)]/60 text-[var(--primary-bg)] placeholder-neutral-600 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-1 focus:ring-neutral-400 transition-all border-none">
+                    </div>
+
+                    <div class="flex items-center gap-2 mb-4">
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-md bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--primary-bg)] hover:bg-[var(--primary-bg)] transition-colors">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                    </div>
+
+                    <p class="text-[10px] text-[var(--primary-bg)]/60 font-medium">© {{ 'now' | date: '%Y' }} 120ages. Rooted in craft, refined through time.</p>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="col-span-1 flex flex-col mb-8 md:mb-0">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="{{ routes.root_url }}" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Home</a></li>
+                        <li><a href="/collections/test" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Collection</a></li>
+                        <li><a href="/pages/contact" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Legal -->
+                <div class="col-span-1 flex flex-col mb-8 md:mb-0">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Legal</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="/policies/shipping-policy" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Shipping & Returns</a></li>
+                        <li><a href="/pages/faq" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">FAQs</a></li>
+                        <li><a href="/policies/privacy-policy" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Privacy Policy</a></li>
+                        <li><a href="/policies/terms-of-service" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Material Focus -->
+                <div class="col-span-1 flex flex-col">
+                    <h3 class="text-[15px] font-bold text-[var(--primary-bg)] mb-6 tracking-tight">Material Focus
+                    </h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Solid Oak</a></li>
+                        <li><a href="#" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Natural Walnut</a></li>
+                        <li><a href="#" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Hand-Finished Surfaces</a></li>
+                        <li><a href="#" class="text-[13px] font-medium text-[var(--primary-bg)] hover:text-[var(--primary-bg)]/60 transition-colors">Sustainable Timber</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Spacing to allow background to show at bottom if needed -->
+            <div class="h-32 md:h-48"></div>
+        </div>
+    </footer>
+
+    <!-- Navbar Scripts -->
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+<script>
+  window.location.replace('/collections/test');
+</script>
+
+{% schema %}
+{
+  "name": "Collections List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "redirect_handle",
+      "label": "Redirect to collection (handle)",
+      "default": "test"
+    }
+  ]
+}
+{% endschema %}

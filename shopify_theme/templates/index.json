@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner"
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Premium Organic Grains",
+        "product_count": 6
+      }
+    },
+    "millets_grains": {
+      "type": "millets-grains"
+    },
+    "specialty_rice": {
+      "type": "specialty-rice"
+    },
+    "marquee": {
+      "type": "landscape-marquee"
+    },
+    "cultivated_testimonials": {
+      "type": "cultivated-testimonials"
+    },
+    "fresh_approach": {
+      "type": "fresh-approach"
+    },
+    "botanica": {
+      "type": "botanica"
+    }
+  },
+  "order": [
+    "hero",
+    "featured_products",
+    "millets_grains",
+    "specialty_rice",
+    "marquee",
+    "cultivated_testimonials",
+    "fresh_approach",
+    "botanica"
+  ]
+}

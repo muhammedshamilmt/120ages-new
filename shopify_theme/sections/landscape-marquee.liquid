@@ -1,0 +1,168 @@
+    <!-- Landscape Poster Marquee Section -->
+    <section class="w-full h-[50vh] relative overflow-hidden bg-[var(--light-bg)] mb-12 flex items-center">
+        <div class="flex items-center h-[90%] gap-2 animate-marquee-slow w-max">
+
+            <!-- Set 1 -->
+            <div class="flex items-center gap-6 h-full shrink-0">
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_1 != blank %}
+                    <img src="{{ section.settings.marquee_image_1 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 1">
+                    {% else %}
+                    <img src="{{ 'prouductshowcase.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 1">
+                    {% endif %}
+                </div>
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_2 != blank %}
+                    <img src="{{ section.settings.marquee_image_2 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 2">
+                    {% else %}
+                    <img src="{{ 'herobg.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 2">
+                    {% endif %}
+                </div>
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_3 != blank %}
+                    <img src="{{ section.settings.marquee_image_3 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 3">
+                    {% else %}
+                    <img src="{{ 'media__1786535692003.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 3">
+                    {% endif %}
+                </div>
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_4 != blank %}
+                    <img src="{{ section.settings.marquee_image_4 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 4">
+                    {% else %}
+                    <img src="{{ 'image.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 4">
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Set 2 — exact duplicate for seamless infinite loop -->
+            <div class="flex items-center gap-6 h-full shrink-0">
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_1 != blank %}
+                    <img src="{{ section.settings.marquee_image_1 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 1">
+                    {% else %}
+                    <img src="{{ 'prouductshowcase.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 1">
+                    {% endif %}
+                </div>
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_2 != blank %}
+                    <img src="{{ section.settings.marquee_image_2 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 2">
+                    {% else %}
+                    <img src="{{ 'herobg.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 2">
+                    {% endif %}
+                </div>
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_3 != blank %}
+                    <img src="{{ section.settings.marquee_image_3 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 3">
+                    {% else %}
+                    <img src="{{ 'media__1786535692003.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 3">
+                    {% endif %}
+                </div>
+                <div class="h-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/80 shadow-[0_15px_40px_rgba(0,0,0,0.06)] shrink-0 bg-[var(--light-bg)]">
+                    {% if section.settings.marquee_image_4 != blank %}
+                    <img src="{{ section.settings.marquee_image_4 | img_url: 'master' }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 4">
+                    {% else %}
+                    <img src="{{ 'image.png' | asset_url }}" class="w-full h-full object-cover mix-blend-multiply" alt="Poster 4">
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Mission Video Section -->
+    <div class="px-2">
+        <section class="w-full h-[100vh] rounded-[2rem] relative overflow-hidden flex items-center justify-center bg-[var(--light-bg)] mb-12">
+
+            <!-- Background Video -->
+            <div class="absolute inset-0 w-full h-full z-0">
+                <video src="{{ 'productvideo.mp4' | asset_url }}" autoplay loop muted playsinline
+                    class="w-full h-full object-cover opacity-90 mix-blend-multiply"></video>
+            </div>
+
+            <!-- Top Text -->
+            <div class="absolute top-0 left-0 w-full p-8 md:p-12 flex flex-col md:flex-row justify-between items-start z-10 max-w-[1600px] mx-auto right-0">
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-4xl md:text-6xl text-[var(--primary-bg)]">{{ section.settings.mission_heading }}</h2>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <p class="text-[var(--primary-bg)] text-[14px] md:text-[15px] font-medium leading-relaxed max-w-sm">
+                        {{ section.settings.mission_body }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="absolute bottom-8 md:bottom-12 left-8 md:left-12 z-10">
+                <a href="{{ section.settings.cta_link | default: routes.collections_url }}"
+                    class="bg-[var(--primary-bg)] text-[var(--light-bg)] pl-8 pr-2 py-2 rounded-full font-bold text-[16px] transition-all duration-300 flex items-center gap-6 shadow-xl hover:-translate-y-1 hover:shadow-2xl group">
+                    {{ section.settings.cta_text }}
+                    <div class="w-10 h-10 rounded-full bg-[var(--light-bg)] text-[var(--primary-bg)] flex items-center justify-center transition-transform group-hover:rotate-45">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17l9.2-9.2M17 17V7H7" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+{% schema %}
+{
+  "name": "Landscape Marquee",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marquee Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "marquee_image_1",
+      "label": "Marquee image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "marquee_image_2",
+      "label": "Marquee image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "marquee_image_3",
+      "label": "Marquee image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "marquee_image_4",
+      "label": "Marquee image 4"
+    },
+    {
+      "type": "header",
+      "content": "Mission Section"
+    },
+    {
+      "type": "text",
+      "id": "mission_heading",
+      "label": "Heading",
+      "default": "Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "mission_body",
+      "label": "Body text",
+      "default": "At 120ages, we are on a mission to bring life back to the table, just like the harvest after a long dry season. Crafted for those who believe that real nourishment starts at the root."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    }
+  ],
+  "presets": [{"name": "Landscape Marquee"}]
+}
+{% endschema %}

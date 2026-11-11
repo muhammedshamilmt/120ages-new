@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "shipping-returns-page"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

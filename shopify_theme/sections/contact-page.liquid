@@ -1,0 +1,106 @@
+    <main class="w-full max-w-[1600px] mx-auto px-8 py-20 flex-grow">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+            <!-- Left Info -->
+            <div>
+                <h1 class="font-heading text-6xl text-[var(--primary-bg)] mb-6">Connect<br>With Us</h1>
+                <p class="text-gray-500 mb-12 text-lg leading-relaxed">We'd love to hear from you. Whether you have a
+                    question about our supplements, shipping, or anything else, our team is ready to answer all your
+                    questions.</p>
+
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--light-bg)] flex items-center justify-center text-[var(--primary-bg)] shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Our Headquarters</h4>
+                            <p class="text-gray-500">123 Wellness Ave, Suite 400<br>San Francisco, CA 94103</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--light-bg)] flex items-center justify-center text-[var(--primary-bg)] shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Email Us</h4>
+                            <p class="text-gray-500">support@heraldwellness.com<br>Response within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--light-bg)] flex items-center justify-center text-[var(--primary-bg)] shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Call Us</h4>
+                            <p class="text-gray-500">+1 (555) 123-4567<br>Mon-Fri, 9am-6pm PST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form -->
+            <div class="bg-[var(--light-bg)] p-10 rounded-[2.5rem] shadow-sm">
+                <h2 class="font-heading text-3xl mb-8">Send a Message</h2>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">First Name</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 rounded-xl border border-transparent focus:border-[var(--primary-bg)] focus:outline-none transition bg-white"
+                                placeholder="John">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Last Name</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 rounded-xl border border-transparent focus:border-[var(--primary-bg)] focus:outline-none transition bg-white"
+                                placeholder="Doe">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Email Address</label>
+                        <input type="email"
+                            class="w-full px-4 py-3 rounded-xl border border-transparent focus:border-[var(--primary-bg)] focus:outline-none transition bg-white"
+                            placeholder="john@example.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Subject</label>
+                        <select
+                            class="w-full px-4 py-3 rounded-xl border border-transparent focus:border-[var(--primary-bg)] focus:outline-none transition bg-white text-gray-600">
+                            <option>Order Inquiry</option>
+                            <option>Product Question</option>
+                            <option>Partnership</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Message</label>
+                        <textarea rows="4"
+                            class="w-full px-4 py-3 rounded-xl border border-transparent focus:border-[var(--primary-bg)] focus:outline-none transition bg-white resize-none"
+                            placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-4 bg-[var(--primary-bg)] text-white font-bold rounded-full hover:bg-[var(--primary-bg)]/90 transition shadow-lg mt-4">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": []
+}
+{% endschema %}

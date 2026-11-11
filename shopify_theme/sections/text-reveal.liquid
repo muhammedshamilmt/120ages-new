@@ -1,0 +1,77 @@
+    <!-- About Us Reveal Section -->
+    <section
+        class="w-full max-w-[1400px] mx-auto px-4 md:px-8 relative overflow-hidden flex flex-col justify-center items-center  pb-4">
+
+        <!-- Floating Left Image -->
+        <div
+            class="absolute left-[-5%] md:left-[2%] top-[30%] md:top-[20%] w-[200px] h-[200px] rotate-[-12deg] z-0 drop-shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=80" alt="Smiling Person"
+                class="w-full h-full rounded-[2rem] object-cover border-[6px] border-[var(--light-bg)]">
+        </div>
+
+        <!-- Floating Right Image -->
+        <div
+            class="absolute right-[-5%] md:right-[2%] top-[50%] md:top-[30%] w-[200px] h-[200px] rotate-[8deg] z-0 drop-shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" alt="Smiling Person"
+                class="w-full h-full rounded-[2rem] object-cover border-[6px] border-[var(--light-bg)]">
+        </div>
+
+        <div class="w-full max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 px-4 md:px-12">
+
+            <!-- Top Pill -->
+            <div
+                class="px-6 py-2 rounded-full border border-neutral-200 text-[11px] font-bold text-[var(--primary-bg)] tracking-widest uppercase mb-12 shadow-sm bg-[var(--light-bg)]/50 backdrop-blur-sm">
+                About Us
+            </div>
+
+            <!-- Scroll Reveal Text -->
+            <div
+                class="reveal-text-container font-heading text-[1.75rem] md:text-4xl lg:text-[3rem]  font-medium mb-16 tracking-tight max-w-[900px] mx-auto flex flex-wrap justify-center gap-x-[0.25em] gap-y-1 md:gap-y-3">
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">The</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">guiding</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">principles</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">behind</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">every</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">smile</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">we</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">create</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">are</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">rooted</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">in</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">care,</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">precision,</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">trust,</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">and</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">a</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">commitment</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">to</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">delivering</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">confidence</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">through</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">every</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--primary-bg)]">experience</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">we</span>
+                <span class="opacity-20 transition-opacity duration-300 text-[var(--secondary-bg)]">design.</span>
+            </div>
+
+            <!-- Bottom Button -->
+            <button
+                class="bg-[var(--secondary-bg)] hover:bg-[#c2e240] text-[var(--primary-bg)] pl-2 pr-6 py-2 rounded-full font-bold text-sm transition-all duration-300 flex items-center gap-4 shadow-lg group relative z-20">
+                <div
+                    class="w-8 h-8 rounded-full bg-[var(--primary-bg)] text-[var(--light-bg)] flex items-center justify-center transition-transform group-hover:translate-x-1">
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </div>
+                Learn More About Us
+            </button>
+
+        </div>
+    </section>
+
+
+
+{% schema %}
+{
+  "name": "Text Reveal",
+  "settings": []
+}
+{% endschema %}

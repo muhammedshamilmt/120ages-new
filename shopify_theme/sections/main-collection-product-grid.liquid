@@ -1,0 +1,616 @@
+
+<style>
+  .custom-checkbox {
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+    width: 1.25em;
+    height: 1.25em;
+    border: 1.5px solid var(--primary-bg);
+    border-radius: 0.3em;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .custom-checkbox::before {
+    content: "";
+    width: 0.7em;
+    height: 0.7em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--light-bg);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  .custom-checkbox:checked {
+    background-color: var(--primary-bg);
+  }
+  .custom-checkbox:checked::before { transform: scale(1); }
+
+  /* Price range slider — single thumb, fill left of thumb */
+  .price-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    background: #254126; /* updated by JS */
+  }
+  .price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: var(--primary-bg);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(37,65,38,0.35);
+  }
+  .price-slider::-moz-range-thumb {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: var(--primary-bg);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(37,65,38,0.35);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<!-- Top Filter Bar -->
+<div class="w-full px-8 py-6 flex flex-wrap items-center justify-between gap-4 bg-white pt-28">
+  <div class="flex items-center gap-3 flex-wrap">
+    <button class="px-4 py-2 bg-white rounded-full border border-gray-200 text-sm font-medium flex items-center gap-2 hover:border-[var(--primary-bg)] transition">
+      Categories <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <a href="{{ collection.url }}?sort_by=created-descending"
+      class="px-4 py-2 bg-transparent rounded-full border border-gray-200 text-sm font-medium hover:border-[var(--primary-bg)] transition">New Arrivals</a>
+    <a href="{{ collection.url }}?filter.v.availability=1"
+      class="px-4 py-2 bg-transparent rounded-full border border-gray-200 text-sm font-medium hover:border-[var(--primary-bg)] transition">Sale</a>
+  </div>
+
+  <div class="flex-1 max-w-xl relative">
+    <div class="relative">
+      <input
+        type="text"
+        id="collection-search"
+        placeholder="Search..."
+        oninput="applyAllFilters()"
+        class="w-full bg-white rounded-full py-2.5 pl-5 pr-10 border border-gray-200 text-sm focus:outline-none focus:border-[var(--primary-bg)] transition">
+      <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3 flex-wrap">
+    {%- assign filter_tags = section.settings.filter_tags | split: ',' -%}
+    {%- for tag in filter_tags -%}
+      {%- assign tag_clean = tag | strip -%}
+      <a href="{{ collection.url }}/{{ tag_clean | handle }}"
+        class="px-4 py-2 bg-transparent rounded-full border border-gray-200 text-sm font-medium hover:border-[var(--primary-bg)] transition">
+        {{ tag_clean }}
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- paginate collection.products by section.settings.products_per_page -%}
+<main class="w-full px-8 pb-20 bg-white">
+
+  <!-- Hero Banner -->
+  <div class="w-full h-[300px] rounded-3xl overflow-hidden relative mb-8 flex bg-[#d5d0c8]">
+    <div class="w-1/2 h-full flex items-center justify-center overflow-hidden">
+      {% if section.settings.banner_image != blank %}
+        <img src="{{ section.settings.banner_image | img_url: 'master' }}"
+          alt="{{ section.settings.banner_heading | escape }}"
+          class="h-full w-full object-cover mix-blend-multiply">
+      {% elsif collection.image %}
+        <img src="{{ collection.image | img_url: 'master' }}"
+          alt="{{ collection.title | escape }}"
+          class="h-full w-full object-cover mix-blend-multiply">
+      {% else %}
+        <img src="{{ 'banner.png' | asset_url }}"
+          alt="{{ collection.title | escape }}"
+          class="h-full w-full object-cover mix-blend-multiply">
+      {% endif %}
+    </div>
+    <div class="w-1/2 h-full flex flex-col justify-center px-10 md:px-16 bg-[#e6e2db]">
+      <span class="text-sm font-medium mb-2 text-[var(--primary-bg)]">— Collections</span>
+      <h1 class="font-heading text-4xl mb-4 text-[var(--primary-bg)] leading-tight">
+        {{ section.settings.banner_heading | default: collection.title }}
+      </h1>
+      <p class="text-sm text-[var(--primary-bg)]/70 max-w-md">
+        {{ section.settings.banner_subtext | default: collection.description | strip_html | truncatewords: 20 | default: "Don't miss out to shopping collection from us! you'll not be let down." }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Breadcrumb & Title -->
+  <div class="mb-8">
+    <div class="text-xs font-medium text-gray-500 mb-2">
+      <a href="{{ routes.root_url }}" class="hover:text-[var(--primary-bg)] transition">Home</a>
+      <span class="mx-1">•</span>
+      <span>{{ collection.title }}</span>
+    </div>
+    <h2 class="font-heading text-2xl font-bold text-[var(--primary-bg)]">{{ collection.title }}</h2>
+  </div>
+
+  <div class="flex gap-10">
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="w-[260px] shrink-0 hidden md:block">
+
+      <!-- Group 1: Organic (editable labels + counts from tags) -->
+      <div class="mb-8 border-b border-[var(--primary-bg)]/10 pb-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="font-heading font-bold text-[15px] text-[var(--primary-bg)]">
+            {{ section.settings.filter_group_1_label }}
+          </h3>
+          <button type="button" onclick="resetFilterGroup('group1')" class="text-xs text-gray-400 hover:text-[var(--primary-bg)] transition">Reset</button>
+        </div>
+        <div class="flex flex-col gap-4" id="group1-items">
+          {%- assign group1_items = section.settings.filter_group_1_items | split: ',' -%}
+          {%- for item in group1_items -%}
+            {%- assign item_clean = item | strip -%}
+            {%- assign item_count = 0 -%}
+            {%- for p in collection.products -%}
+              {%- if p.tags contains item_clean -%}{%- assign item_count = item_count | plus: 1 -%}{%- endif -%}
+            {%- endfor -%}
+            <label class="flex items-center justify-between cursor-pointer group">
+              <div class="flex items-center gap-3">
+                <input type="checkbox"
+                  class="custom-checkbox group1-checkbox"
+                  data-tag="{{ item_clean | downcase }}"
+                  onchange="applyAllFilters()">
+                <span class="text-sm font-medium group-hover:text-gray-600 transition text-[var(--primary-bg)]">{{ item_clean }}</span>
+              </div>
+              <span class="text-xs text-gray-400">{{ item_count }}</span>
+            </label>
+          {%- endfor -%}
+        </div>
+        <button type="button" onclick="toggleShowMore('group1-items', this)"
+          class="w-full mt-5 py-2.5 bg-[var(--primary-bg)] text-[var(--light-bg)] text-xs font-bold rounded-full hover:bg-[var(--primary-bg)]/90 transition">
+          Show more
+        </button>
+      </div>
+
+      <!-- Group 2: Category — dynamic from collection product types -->
+      <div class="mb-8 border-b border-[var(--primary-bg)]/10 pb-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="font-heading font-bold text-[15px] text-[var(--primary-bg)]">
+            {{ section.settings.filter_group_2_label }}
+          </h3>
+          <button type="button" onclick="resetFilterGroup('group2')" class="text-xs text-gray-400 hover:text-[var(--primary-bg)] transition">Reset</button>
+        </div>
+        <div class="flex flex-col gap-4" id="group2-items">
+          {%- comment -%} Pull unique product types directly from collection products {%- endcomment -%}
+          {%- assign seen_types = '' -%}
+          {%- for p in collection.products -%}
+            {%- unless p.type == blank -%}
+              {%- assign type_lower = p.type | downcase | strip -%}
+              {%- unless seen_types contains type_lower -%}
+                {%- assign seen_types = seen_types | append: type_lower | append: '|' -%}
+                {%- assign type_count = 0 -%}
+                {%- for pp in collection.products -%}
+                  {%- if pp.type == p.type -%}{%- assign type_count = type_count | plus: 1 -%}{%- endif -%}
+                {%- endfor -%}
+                <label class="flex items-center justify-between cursor-pointer group">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox"
+                      class="custom-checkbox group2-checkbox"
+                      data-tag="{{ type_lower }}"
+                      onchange="applyAllFilters()">
+                    <span class="text-sm font-medium group-hover:text-gray-600 transition text-[var(--primary-bg)]">{{ p.type }}</span>
+                  </div>
+                  <span class="text-xs text-gray-400">{{ type_count }}</span>
+                </label>
+              {%- endunless -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+        <button type="button" onclick="toggleShowMore('group2-items', this)"
+          class="w-full mt-5 py-2.5 border border-gray-300 text-gray-600 text-xs font-bold rounded-full hover:border-[var(--primary-bg)] hover:text-[var(--primary-bg)] transition">
+          Show more
+        </button>
+      </div>
+
+      <!-- Price Range Slider -->
+      <div>
+        <div class="flex justify-between items-center mb-5">
+          <h3 class="font-heading font-bold text-[15px] text-[var(--primary-bg)]">Price</h3>
+          <button type="button" onclick="resetPriceFilter()" class="text-xs text-gray-400 hover:text-[var(--primary-bg)] transition">Reset</button>
+        </div>
+        <div class="px-1">
+          <input
+            type="range"
+            id="price-slider"
+            class="price-slider w-full"
+            min="{{ section.settings.price_min }}"
+            max="{{ section.settings.price_max }}"
+            value="{{ section.settings.price_max }}"
+            oninput="onPriceSlide(this)">
+          <div class="flex justify-between text-[11px] font-bold mt-3">
+            <span class="text-gray-400">${{ section.settings.price_min }}</span>
+            <span class="text-gray-400">${{ section.settings.price_mid }}</span>
+            <span id="price-current-label" class="text-[var(--primary-bg)] font-bold">${{ section.settings.price_max }}</span>
+            <span class="text-gray-400">${{ section.settings.price_max }}</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ═══ PRODUCT GRID ═══ -->
+    <div class="flex-1">
+      <!-- Sort bar -->
+      <div class="flex items-center justify-between mb-6">
+        <p class="text-sm text-[var(--secondary-bg)] font-medium">
+          {{ collection.products_count }} {{ collection.products_count | pluralize: 'product', 'products' }}
+        </p>
+        <form id="sort-form" action="{{ collection.url }}" method="get">
+          <select name="sort_by" onchange="this.form.submit()"
+            class="text-sm border border-gray-200 rounded-full px-4 py-2 focus:outline-none focus:border-[var(--primary-bg)] bg-white text-[var(--primary-bg)] font-medium cursor-pointer">
+            <option value="manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Featured</option>
+            <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+            <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+            <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Newest First</option>
+            <option value="best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Best Selling</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="product-grid">
+        {%- for product in collection.products -%}
+        <div class="product-card w-full bg-white rounded-[2rem] flex flex-col relative group overflow-hidden border border-[var(--primary-bg)]/80"
+          data-tags="{{ product.tags | join: '|' | downcase }}"
+          data-title="{{ product.title | downcase | escape }}"
+          data-type="{{ product.type | downcase | escape }}"
+          data-price="{{ product.price | divided_by: 100 }}">
+
+          {%- if product.tags contains 'best-seller' -%}
+            <span class="absolute top-6 left-6 bg-[#7c9e78] text-white text-[11px] font-bold px-3 py-1 rounded-full z-10">Best Seller</span>
+          {%- elsif product.tags contains 'new' -%}
+            <span class="absolute top-6 left-6 bg-[#f8c630] text-[var(--primary-bg)] text-[11px] font-bold px-3 py-1 rounded-full z-10">New Arrival</span>
+          {%- elsif product.compare_at_price > product.price -%}
+            <span class="absolute top-6 left-6 bg-red-500 text-white text-[11px] font-bold px-3 py-1 rounded-full z-10">Sale</span>
+          {%- endif -%}
+
+          <a href="{{ product.url }}"
+            class="block h-[280px] w-full flex items-center justify-center overflow-hidden border-b border-[var(--primary-bg)]/80 bg-white">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '500x' }}"
+                alt="{{ product.title | escape }}"
+                class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply group-hover:scale-105"
+                loading="lazy">
+            {% else %}
+              <div class="w-full h-full flex items-center justify-center text-gray-200 bg-[var(--light-bg)]">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              </div>
+            {% endif %}
+          </a>
+
+          <div class="mt-auto px-6 py-6">
+            <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">{{ product.type | default: 'Organic' }}</p>
+            <h3 class="text-[1.5rem] font-bold text-[var(--primary-bg)] mb-2 leading-tight">
+              <a href="{{ product.url }}" class="hover:underline">{{ product.title }}</a>
+            </h3>
+            <div class="flex items-center justify-between mt-4">
+              <div class="flex items-center space-x-2">
+                <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">{{ product.price | money }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="text-[13px] text-[var(--secondary-bg)] line-through">{{ product.compare_at_price | money }}</span>
+                {%- endif -%}
+              </div>
+              <form method="post" action="/cart/add" class="m-0 p-0">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <button type="submit"
+                  class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[#1a2d1a] transition shadow-lg">
+                  <i class="fa-solid fa-cart-shopping text-sm"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {%- else -%}
+        <div class="col-span-full py-24 flex flex-col items-center justify-center text-[var(--secondary-bg)] gap-4" id="no-products">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M8 7V5a2 2 0 0 0-4 0v2"/></svg>
+          <p class="text-base font-medium">No products found in this collection.</p>
+          <a href="{{ routes.collections_url }}" class="text-sm underline hover:text-[var(--primary-bg)] transition">Browse all collections</a>
+        </div>
+        {%- endfor -%}
+      </div>
+
+      <!-- No results message (shown by JS filter) -->
+      <div id="no-filter-results" class="hidden py-16 text-center text-[var(--secondary-bg)] text-sm font-medium">
+        No products match the selected filters.
+      </div>
+
+      <!-- Pagination -->
+      {%- if paginate.pages > 1 -%}
+      <div class="flex items-center justify-center gap-2 mt-16">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[var(--primary-bg)] hover:border-[var(--primary-bg)] transition">
+            <i class="fa-solid fa-chevron-left text-xs"></i>
+          </a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-sm font-medium hover:border-[var(--primary-bg)] transition">{{ part.title }}</a>
+          {%- else -%}
+            {%- if part.title == paginate.current_page -%}
+              <span class="w-10 h-10 rounded-full bg-[var(--primary-bg)] text-white flex items-center justify-center text-sm font-bold">{{ part.title }}</span>
+            {%- else -%}
+              <span class="w-10 h-10 flex items-center justify-center text-sm text-gray-400">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-[var(--primary-bg)] hover:border-[var(--primary-bg)] transition">
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</main>
+{%- endpaginate -%}
+
+<script>
+(function() {
+
+  /* ── Helpers ─────────────────────────────────────────── */
+  function qs(sel) { return document.querySelector(sel); }
+  function qsa(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+  /* ── Price slider ────────────────────────────────────── */
+  function updateSliderFill(el) {
+    var val = parseFloat(el.value);
+    var min = parseFloat(el.min);
+    var max = parseFloat(el.max);
+    var pct = max === min ? 100 : ((val - min) / (max - min)) * 100;
+    var green = '#254126';
+    var muted = 'rgba(152,157,125,0.3)';
+    el.style.background = [
+      'linear-gradient(to right,',
+      green, '0%,',
+      green, pct + '%,',
+      muted, pct + '%,',
+      muted, '100%)'
+    ].join(' ');
+  }
+
+  function onPriceSlide(el) {
+    updateSliderFill(el);
+    var label = qs('#price-current-label');
+    if (label) label.textContent = '$' + Math.round(el.value);
+    applyAllFilters();
+  }
+
+  function resetPriceFilter() {
+    var sl = qs('#price-slider');
+    if (!sl) return;
+    sl.value = sl.max;
+    onPriceSlide(sl);
+  }
+
+  /* ── Tag filter helpers ──────────────────────────────── */
+  function getChecked(cls) {
+    return qsa('.' + cls + ':checked').map(function(cb) {
+      return (cb.dataset.tag || '').toLowerCase().trim();
+    });
+  }
+
+  function resetFilterGroup(group) {
+    qsa('.' + group + '-checkbox').forEach(function(cb) { cb.checked = false; });
+    applyAllFilters();
+  }
+
+  /* ── Master filter ───────────────────────────────────── */
+  function applyAllFilters() {
+    var g1 = getChecked('group1-checkbox');
+    var g2 = getChecked('group2-checkbox');
+
+    var sl = qs('#price-slider');
+    var maxPrice = sl ? parseFloat(sl.value) : 999999;
+
+    var searchEl = qs('#collection-search');
+    var searchTerm = searchEl ? searchEl.value.toLowerCase().trim() : '';
+
+    var cards = qsa('.product-card');
+    var visible = 0;
+
+    cards.forEach(function(card) {
+      var rawTags  = (card.dataset.tags  || '').toLowerCase();
+      var tags     = rawTags.split('|').map(function(t){ return t.trim(); });
+      var title    = (card.dataset.title || '').toLowerCase();
+      var type     = (card.dataset.type  || '').toLowerCase();
+      /* data-price is already in dollars (cents / 100 from Liquid) */
+      var price    = parseFloat(card.dataset.price || 0);
+
+      var passG1 = g1.length === 0 || g1.some(function(t) {
+        return tags.some(function(pt) { return pt.indexOf(t) !== -1; });
+      });
+
+      var passG2 = g2.length === 0 || g2.some(function(t) {
+        return type.indexOf(t) !== -1 ||
+               tags.some(function(pt) { return pt.indexOf(t) !== -1; });
+      });
+
+      var passPrice = price <= maxPrice;
+
+      var passSearch = searchTerm === '' ||
+        title.indexOf(searchTerm) !== -1 ||
+        type.indexOf(searchTerm) !== -1 ||
+        rawTags.indexOf(searchTerm) !== -1;
+
+      if (passG1 && passG2 && passPrice && passSearch) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    var noResults = qs('#no-filter-results');
+    if (noResults) noResults.classList.toggle('hidden', visible > 0);
+  }
+
+  /* ── Show more / less ────────────────────────────────── */
+  function toggleShowMore(containerId, btn) {
+    var items = qsa('#' + containerId + ' label');
+    if (items.length <= 4) return;
+    var anyHidden = items.some(function(item, i) {
+      return i >= 4 && item.style.display === 'none';
+    });
+    items.forEach(function(item, i) {
+      item.style.display = (!anyHidden && i >= 4) ? 'none' : '';
+    });
+    btn.textContent = anyHidden ? 'Show less' : 'Show more';
+  }
+
+  /* ── Init ────────────────────────────────────────────── */
+  function init() {
+    /* collapse filter groups beyond 4 */
+    ['group1-items', 'group2-items'].forEach(function(id) {
+      qsa('#' + id + ' label').forEach(function(item, i) {
+        if (i >= 4) item.style.display = 'none';
+      });
+    });
+
+    /* paint slider fill on load */
+    var sl = qs('#price-slider');
+    if (sl) onPriceSlide(sl);
+
+    /* live search */
+    var searchInput = qs('#collection-search');
+    if (searchInput) searchInput.addEventListener('input', applyAllFilters);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init(); /* already ready (e.g. theme editor) */
+  }
+
+  /* expose for inline handlers */
+  window.onPriceSlide     = onPriceSlide;
+  window.resetPriceFilter = resetPriceFilter;
+  window.resetFilterGroup = resetFilterGroup;
+  window.applyAllFilters  = applyAllFilters;
+  window.toggleShowMore   = toggleShowMore;
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image (overrides collection image)"
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Banner heading",
+      "default": "Explore The Various Collection of 120ages Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_subtext",
+      "label": "Banner subtext",
+      "default": "Don't miss out to shopping collection from us! you'll not be let down."
+    },
+    {
+      "type": "header",
+      "content": "Top Filter Tags"
+    },
+    {
+      "type": "text",
+      "id": "filter_tags",
+      "label": "Comma-separated filter tags",
+      "default": "Grains, Rice, Seeds, Organic"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar — Filter Group 1"
+    },
+    {
+      "type": "text",
+      "id": "filter_group_1_label",
+      "label": "Group label",
+      "default": "Organic"
+    },
+    {
+      "type": "text",
+      "id": "filter_group_1_items",
+      "label": "Comma-separated items",
+      "default": "Quinoa, Rice, Millet, Amaranth, Barley, Sorghum, Teff, Buckwheat"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar — Filter Group 2"
+    },
+    {
+      "type": "text",
+      "id": "filter_group_2_label",
+      "label": "Group label",
+      "default": "Category"
+    },
+    {
+      "type": "header",
+      "content": "Price Range Slider"
+    },
+    {
+      "type": "number",
+      "id": "price_min",
+      "label": "Minimum price ($)",
+      "default": 10
+    },
+    {
+      "type": "number",
+      "id": "price_mid",
+      "label": "Mid label ($)",
+      "default": 100
+    },
+    {
+      "type": "number",
+      "id": "price_default",
+      "label": "Default slider value ($)",
+      "default": 1000
+    },
+    {
+      "type": "number",
+      "id": "price_max",
+      "label": "Maximum price ($)",
+      "default": 5000
+    },
+    {
+      "type": "header",
+      "content": "Pagination"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "label": "Products per page",
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

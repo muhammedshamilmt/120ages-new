@@ -1,0 +1,97 @@
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/40 z-[120] opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeCart()"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-[100vh] w-full max-w-[450px] bg-[var(--light-bg)] z-[130] translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-l-[2.5rem] flex flex-col shadow-2xl border-l border-[var(--primary-bg)]/10 overflow-hidden">
+        
+        <!-- Cart Header -->
+        <div class="px-6 pt-10 pb-4">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="font-heading text-5xl text-[var(--primary-bg)] font-bold tracking-tight uppercase" style="color: var(--primary-bg);">Cart <span class="text-xl align-top font-sans font-semibold tracking-normal" style="color: var(--primary-bg);"><span id="cart-header-count">(0)</span></span></h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-[var(--primary-bg)] transition-colors">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <a href="#" onclick="clearCart(); return false;" class="text-sm font-bold text-[var(--primary-bg)] underline decoration-2 decoration-[var(--primary-bg)] hover:opacity-70 transition-opacity underline-offset-4 tracking-wide">Empty Basket</a>
+        </div>
+
+        <!-- Milestones (Horizontal Scroll) -->
+        <div class="flex items-center gap-3 px-6 pb-8 pt-2 overflow-x-auto no-scrollbar scroll-smooth snap-x">
+            <!-- Milestone 1 -->
+            <div id="milestone-1" class="min-w-[150px] bg-[#f8c630] rounded-2xl p-4 snap-start shrink-0">
+                <p class="text-[9px] font-bold text-[var(--primary-bg)] uppercase mb-1 tracking-wider">Get Free Shipping</p>
+                <p class="text-[15px] font-bold text-[var(--primary-bg)]">$200.00</p>
+            </div>
+            <!-- Milestone 2 -->
+            <div id="milestone-2" class="min-w-[150px] border border-[#f8c630] rounded-2xl p-4 snap-start shrink-0 relative overflow-hidden bg-white/50">
+                <div class="absolute top-0 left-0 h-full w-[65%] bg-[#f8c630] -z-10"></div>
+                <p class="text-[9px] font-bold text-[var(--primary-bg)] uppercase mb-1 tracking-wider">Save Extra 5% Off</p>
+                <p class="text-[15px] font-bold text-[var(--primary-bg)]">$150.00</p>
+            </div>
+            </div>
+
+        <!-- Cart Items (Scrollable) -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto px-6 pb-8 no-scrollbar flex flex-col gap-6">
+        </div>
+
+        <!-- Summary & Checkout -->
+        <div class="mt-auto bg-transparent px-6 py-8">
+            <div class="flex justify-between items-center mb-2.5">
+                <span class="text-[15px] font-medium text-[var(--primary-bg)]">Free shipping</span>
+                <span class="text-[15px] font-medium text-[var(--primary-bg)]">0 PLN</span>
+            </div>
+            
+            
+            <div class="h-px w-full bg-gray-200 mb-5"></div>
+            
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-xl font-bold text-[var(--primary-bg)] uppercase tracking-wide">Subtotal</span>
+                <span id="cart-subtotal" class="text-xl font-bold text-[var(--primary-bg)]">$0.00</span>
+            </div>
+
+            <a href="/checkout" class="block w-full py-4 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full font-heading font-bold text-2xl text-center hover:opacity-90 transition-colors">
+                Go to checkout
+            </a>
+        </div>
+
+    </div>
+
+
+    <script>
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-drawer-overlay');
+
+        function openCart() {
+            if(cartOverlay && cartDrawer) {
+                cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                cartOverlay.classList.add('opacity-100', 'pointer-events-auto');
+                cartDrawer.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeCart() {
+            if(cartOverlay && cartDrawer) {
+                cartOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+                cartDrawer.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            }
+        }
+
+        async function clearCart() {
+            try {
+                await fetch('/cart/clear.js', { method: 'POST' });
+                if (typeof fetchCart === 'function') fetchCart();
+            } catch (error) {
+                console.error('Error clearing cart', error);
+            }
+        }
+    </script>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}

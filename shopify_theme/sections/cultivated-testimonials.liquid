@@ -1,0 +1,241 @@
+    <!-- Cultivated Testimonials Section -->
+    <section class="w-full mx-auto px-4 md:px-8 bg-[var(--light-bg)] mt-16">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 px-4 md:px-8">
+            <h2 class="text-4xl md:text-[3.25rem] font-medium text-[var(--primary-bg)] tracking-tight leading-[1.1] max-w-xl">
+                {{ section.settings.heading }} <span class="text-pink-300">♡</span>
+            </h2>
+            <p class="text-[var(--secondary-bg)] text-[15px] font-medium max-w-xs md:text-right md:pb-2">
+                {{ section.settings.subheading }}
+            </p>
+        </div>
+
+        <!-- Scrollable Cards -->
+        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4 px-4 md:px-8">
+
+            {%- for block in section.blocks -%}
+
+                {%- if block.type == 'text_card' -%}
+                <!-- Text Card -->
+                <div class="min-w-[300px] max-w-[300px] h-[400px] bg-[var(--light-bg)] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:-translate-y-2 transition-transform duration-500 cursor-pointer"
+                    {{ block.shopify_attributes }}>
+                    <div class="flex items-center gap-4 mb-8">
+                        {%- if block.settings.avatar != blank -%}
+                            <img src="{{ block.settings.avatar | img_url: '100x100', crop: 'center' }}"
+                                alt="{{ block.settings.name | escape }}"
+                                class="w-12 h-12 rounded-full object-cover">
+                        {%- else -%}
+                            <div class="w-12 h-12 rounded-full bg-[var(--secondary-bg)]/30 flex items-center justify-center text-[var(--primary-bg)] font-bold text-lg">
+                                {{ block.settings.name | slice: 0 }}
+                            </div>
+                        {%- endif -%}
+                        <div>
+                            <h4 class="font-bold text-[var(--primary-bg)] text-[15px]">{{ block.settings.name }}</h4>
+                            <p class="text-[var(--secondary-bg)] text-[12px]">{{ block.settings.role }}</p>
+                        </div>
+                    </div>
+                    <p class="text-[16px] text-[var(--primary-bg)] leading-snug font-medium mb-auto tracking-tight">
+                        "{{ block.settings.quote }}"
+                    </p>
+                    <div class="flex justify-between items-end mt-6">
+                        <div class="flex gap-1 text-pink-300 text-[10px]">
+                            {%- for i in (1..block.settings.rating) -%}
+                                <i class="fa-solid fa-star"></i>
+                            {%- endfor -%}
+                        </div>
+                        <span class="text-[11px] text-[var(--secondary-bg)] font-medium tracking-wide">{{ block.settings.date }}</span>
+                    </div>
+                </div>
+
+                {%- elsif block.type == 'image_card' -%}
+                <!-- Image Card -->
+                <div class="min-w-[300px] max-w-[300px] h-[400px] rounded-[2rem] p-8 flex flex-col snap-start relative group shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden hover:-translate-y-2 transition-transform duration-500 cursor-pointer"
+                    {{ block.shopify_attributes }}>
+                    {%- if block.settings.background_image != blank -%}
+                        <img src="{{ block.settings.background_image | img_url: 'master' }}"
+                            class="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700"
+                            alt="{{ block.settings.name | escape }}">
+                    {%- else -%}
+                        <div class="absolute inset-0 bg-[var(--secondary-bg)]/40 z-0"></div>
+                    {%- endif -%}
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-0"></div>
+                    <div class="relative z-10 mt-2">
+                        <h4 class="font-bold text-[var(--light-bg)] text-[15px]">{{ block.settings.name }}</h4>
+                        <p class="text-[var(--light-bg)]/90 text-[12px]">{{ block.settings.role }}</p>
+                    </div>
+                    <div class="flex justify-between items-end mt-auto relative z-10 pb-2">
+                        <div class="flex gap-1 text-[var(--light-bg)] text-[10px]">
+                            {%- for i in (1..block.settings.rating) -%}
+                                <i class="fa-solid fa-star"></i>
+                            {%- endfor -%}
+                        </div>
+                        <span class="text-[11px] text-[var(--light-bg)]/90 font-medium tracking-wide">{{ block.settings.date }}</span>
+                    </div>
+                </div>
+
+                {%- endif -%}
+
+            {%- endfor -%}
+
+        </div>
+    </section>
+
+{% schema %}
+{
+  "name": "Cultivated Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cultivated to deliver proven natural vitality"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Explore results shaped by real users and real daily progress."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_card",
+      "name": "Text Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / description",
+          "default": "Verified buyer"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This product genuinely changed my daily routine for the better."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "01/01/2025"
+        }
+      ]
+    },
+    {
+      "type": "image_card",
+      "name": "Image Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / location",
+          "default": "Verified buyer"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "01/01/2025"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cultivated Testimonials",
+      "blocks": [
+        {
+          "type": "text_card",
+          "settings": {
+            "name": "Amina R.",
+            "role": "Verified buyer, 3 months",
+            "quote": "Every product feels personal — it's like the brand actually knows what my body needs.",
+            "rating": 5,
+            "date": "15/12/2025"
+          }
+        },
+        {
+          "type": "image_card",
+          "settings": {
+            "name": "Noah",
+            "role": "Customer since 2024",
+            "rating": 5,
+            "date": "16/12/2025"
+          }
+        },
+        {
+          "type": "text_card",
+          "settings": {
+            "name": "Sofia G.",
+            "role": "Verified buyer",
+            "quote": "The quality is spot-on. I used to guess what my body needed, but now I know exactly what works for me.",
+            "rating": 5,
+            "date": "17/12/2025"
+          }
+        },
+        {
+          "type": "image_card",
+          "settings": {
+            "name": "Nastya",
+            "role": "From Berlin, Germany",
+            "rating": 5,
+            "date": "18/12/2025"
+          }
+        },
+        {
+          "type": "text_card",
+          "settings": {
+            "name": "Sarah M.",
+            "role": "Verified buyer",
+            "quote": "120ages has completely changed how I think about what I eat. Highly recommend.",
+            "rating": 5,
+            "date": "19/12/2025"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

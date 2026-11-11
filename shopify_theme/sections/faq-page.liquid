@@ -1,0 +1,89 @@
+    <main class="w-full max-w-4xl mx-auto px-8 py-20 flex-grow">
+        <h1 class="font-heading text-6xl text-[var(--primary-bg)] mb-4 text-center">Frequently Asked Questions</h1>
+        <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Have a question? We're here to help. If you don't find what you need here, please reach out to our team.</p>
+        
+        <div class="space-y-4">
+            <!-- Accordion Item 1 -->
+            <div class="border border-gray-200 rounded-3xl overflow-hidden p-6 hover:border-[var(--primary-bg)] transition group accordion-container">
+                <div class="flex justify-between items-center cursor-pointer accordion-header">
+                    <h3 class="font-bold text-xl text-[var(--primary-bg)]">Are your supplements third-party tested?</h3>
+                    <i class="fa-solid fa-chevron-up text-sm transition-transform accordion-icon text-[var(--primary-bg)]"></i>
+                </div>
+                <div class="text-md text-gray-500 leading-relaxed accordion-content block mt-4">
+                    Yes! All of our products undergo rigorous third-party testing for purity, potency, and safety. We test for heavy metals, microbes, and ensure that what's on the label is exactly what's in the bottle.
+                </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="border border-gray-200 rounded-3xl overflow-hidden p-6 hover:border-[var(--primary-bg)] transition group accordion-container">
+                <div class="flex justify-between items-center cursor-pointer accordion-header">
+                    <h3 class="font-bold text-xl text-[var(--primary-bg)]">Do you offer international shipping?</h3>
+                    <i class="fa-solid fa-chevron-down text-sm text-gray-400 transition-transform accordion-icon"></i>
+                </div>
+                <div class="hidden mt-4 text-md text-gray-500 leading-relaxed accordion-content">
+                    Yes, we ship to over 50 countries worldwide. Shipping costs and delivery times vary depending on the destination. You can find detailed information on our Shipping & Returns page.
+                </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="border border-gray-200 rounded-3xl overflow-hidden p-6 hover:border-[var(--primary-bg)] transition group accordion-container">
+                <div class="flex justify-between items-center cursor-pointer accordion-header">
+                    <h3 class="font-bold text-xl text-[var(--primary-bg)]">Are 120ages products vegan and gluten-free?</h3>
+                    <i class="fa-solid fa-chevron-down text-sm text-gray-400 transition-transform accordion-icon"></i>
+                </div>
+                <div class="hidden mt-4 text-md text-gray-500 leading-relaxed accordion-content">
+                    The majority of our product line is 100% vegan and gluten-free. We clearly label all allergens and dietary information on every product page. Please check the specific product details before purchasing if you have severe allergies.
+                </div>
+            </div>
+
+            <!-- Accordion Item 4 -->
+            <div class="border border-gray-200 rounded-3xl overflow-hidden p-6 hover:border-[var(--primary-bg)] transition group accordion-container">
+                <div class="flex justify-between items-center cursor-pointer accordion-header">
+                    <h3 class="font-bold text-xl text-[var(--primary-bg)]">How do subscriptions work?</h3>
+                    <i class="fa-solid fa-chevron-down text-sm text-gray-400 transition-transform accordion-icon"></i>
+                </div>
+                <div class="hidden mt-4 text-md text-gray-500 leading-relaxed accordion-content">
+                    Our subscription program saves you 15% on every order. You can choose to have your supplements delivered every 30, 60, or 90 days. You can pause, modify, or cancel your subscription at any time through your account dashboard.
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-16 text-center">
+            <p class="text-gray-500 mb-4">Still have questions?</p>
+            <a href="connect.html" class="inline-block px-8 py-3 bg-[var(--primary-bg)] text-white font-bold rounded-full hover:bg-[var(--primary-bg)]/90 transition shadow-lg">Contact Us</a>
+        </div>
+    </main>
+
+    <script>
+        // Accordion Logic for FAQ
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                const isHidden = content.classList.contains('hidden');
+
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    content.classList.add('block');
+                    
+                    icon.classList.remove('fa-chevron-down', 'text-gray-400');
+                    icon.classList.add('fa-chevron-up', 'text-[var(--primary-bg)]');
+                } else {
+                    content.classList.add('hidden');
+                    content.classList.remove('block');
+                    
+                    icon.classList.remove('fa-chevron-up', 'text-[var(--primary-bg)]');
+                    icon.classList.add('fa-chevron-down', 'text-gray-400');
+                }
+            });
+        });
+    </script>
+
+{% schema %}
+{
+  "name": "FAQ Page",
+  "settings": []
+}
+{% endschema %}

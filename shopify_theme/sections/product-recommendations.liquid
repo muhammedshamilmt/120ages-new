@@ -1,0 +1,161 @@
+
+{%- if recommendations.performed -%}
+
+  {%- comment -%}
+    This section is fetched via JS. When called by the recommendations API,
+    recommendations.performed is true and we render bare cards for injection.
+  {%- endcomment -%}
+
+  {%- if recommendations.products_count > 0 -%}
+    {%- for rec in recommendations.products -%}
+    <div class="rec-product-card w-full h-[400px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col relative group overflow-hidden border border-[var(--primary-bg)]/80">
+      <a href="{{ rec.url }}"
+        class="block h-[280px] w-full flex items-center justify-center overflow-hidden border-b border-[var(--primary-bg)]/80 bg-white">
+        {% if rec.featured_image %}
+        <img src="{{ rec.featured_image | img_url: '500x' }}"
+          alt="{{ rec.title | escape }}"
+          class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply group-hover:scale-105">
+        {% else %}
+        <div class="w-full h-full flex items-center justify-center text-gray-200 bg-[var(--light-bg)]">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        {% endif %}
+      </a>
+      <div class="mt-auto px-6 py-5">
+        <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">{{ rec.type | default: 'Organic' }}</p>
+        <h3 class="text-[1.3rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="{{ rec.title | escape }}">
+          <a href="{{ rec.url }}" class="hover:underline">{{ rec.title }}</a>
+        </h3>
+        <div class="flex items-center justify-between">
+          <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">{{ rec.price | money }}</span>
+          <form method="post" action="/cart/add" class="m-0 p-0">
+            <input type="hidden" name="id" value="{{ rec.variants.first.id }}">
+            <button type="submit"
+              class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[#1a2d1a] transition shadow-lg">
+              <i class="fa-solid fa-cart-shopping text-sm"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {%- endfor -%}
+  {%- endif -%}
+
+{%- else -%}
+
+  {%- comment -%}
+    Initial page load — render the full section shell.
+    JS fetches the API version above and injects the cards.
+  {%- endcomment -%}
+
+  <div class="w-full max-w-7xl mx-auto px-8 pt-16 pb-32 border-t border-gray-100 bg-white text-center">
+    <h2 class="font-heading text-4xl text-[var(--primary-bg)] mb-12">You might also like</h2>
+
+    <!-- Skeleton while loading -->
+    <div id="rec-loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+      {%- for i in (1..4) -%}
+      <div class="w-full h-[400px] bg-[var(--light-bg)] rounded-[2rem] overflow-hidden border border-[var(--primary-bg)]/10">
+        <div class="h-[280px] bg-[var(--secondary-bg)]/10 border-b border-[var(--primary-bg)]/10"></div>
+        <div class="px-6 py-5 flex flex-col gap-3">
+          <div class="h-3 w-16 bg-[var(--secondary-bg)]/20 rounded-full"></div>
+          <div class="h-5 w-3/4 bg-[var(--secondary-bg)]/20 rounded-full mt-1"></div>
+          <div class="h-5 w-1/3 bg-[var(--secondary-bg)]/20 rounded-full mt-1"></div>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+
+    <!-- API results injected here -->
+    <div id="rec-result" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left"></div>
+
+    <!-- Fallback: same-collection products (excludes current) -->
+    <div id="rec-fallback" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+      {%- assign fallback_col = product.collections.first -%}
+      {%- if fallback_col != blank -%}
+        {%- assign shown = 0 -%}
+        {%- for fp in fallback_col.products -%}
+          {%- if fp.id != product.id and shown < 4 -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <div class="w-full h-[400px] bg-[var(--light-bg)] rounded-[2rem] flex flex-col relative group overflow-hidden border border-[var(--primary-bg)]/80">
+            <a href="{{ fp.url }}"
+              class="block h-[280px] w-full flex items-center justify-center overflow-hidden border-b border-[var(--primary-bg)]/80 bg-white">
+              {% if fp.featured_image %}
+              <img src="{{ fp.featured_image | img_url: '500x' }}"
+                alt="{{ fp.title | escape }}"
+                class="h-full w-full object-contain transition-transform duration-500 mix-blend-multiply group-hover:scale-105">
+              {% else %}
+              <div class="w-full h-full flex items-center justify-center text-gray-200">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              </div>
+              {% endif %}
+            </a>
+            <div class="mt-auto px-6 py-5">
+              <p class="text-[12px] font-medium text-[var(--secondary-bg)] mb-1">{{ fp.type | default: 'Organic' }}</p>
+              <h3 class="text-[1.3rem] font-bold text-[var(--primary-bg)] mb-2 truncate" title="{{ fp.title | escape }}">
+                <a href="{{ fp.url }}" class="hover:underline">{{ fp.title }}</a>
+              </h3>
+              <div class="flex items-center justify-between">
+                <span class="text-[1.4rem] font-bold text-[var(--primary-bg)]">{{ fp.price | money }}</span>
+                <form method="post" action="/cart/add" class="m-0 p-0">
+                  <input type="hidden" name="id" value="{{ fp.variants.first.id }}">
+                  <button type="submit"
+                    class="w-10 h-10 bg-[var(--primary-bg)] text-[var(--light-bg)] rounded-full flex items-center justify-center hover:bg-[#1a2d1a] transition shadow-lg">
+                    <i class="fa-solid fa-cart-shopping text-sm"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+
+  <script>
+  (function() {
+    var loading  = document.getElementById('rec-loading');
+    var result   = document.getElementById('rec-result');
+    var fallback = document.getElementById('rec-fallback');
+
+    var apiUrl = '{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4';
+
+    fetch(apiUrl)
+      .then(function(res) { return res.text(); })
+      .then(function(html) {
+        var parser = new DOMParser();
+        var doc    = parser.parseFromString(html, 'text/html');
+        var cards  = doc.querySelectorAll('.rec-product-card');
+
+        loading.classList.add('hidden');
+
+        if (cards && cards.length > 0) {
+          cards.forEach(function(card) {
+            result.appendChild(card.cloneNode(true));
+          });
+          result.classList.remove('hidden');
+          result.classList.add('grid');
+        } else {
+          // Shopify hasn't built recommendations yet — show same-collection fallback
+          fallback.classList.remove('hidden');
+          fallback.classList.add('grid');
+        }
+      })
+      .catch(function() {
+        loading.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        fallback.classList.add('grid');
+      });
+  })();
+  </script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "settings": [],
+  "presets": [{"name": "Product Recommendations"}]
+}
+{% endschema %}
